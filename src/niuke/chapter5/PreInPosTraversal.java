@@ -7,7 +7,6 @@ package src.niuke.chapter5;
 
 import src.datastruct.TreeNode;
 
-import java.lang.annotation.ElementType;
 import java.util.Stack;
 
 /**
@@ -17,9 +16,10 @@ import java.util.Stack;
 public class PreInPosTraversal {
     public static void main(String[] args) {
         TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
-//        preOrderRecur(head);
+        preOrderRecur(head);
 //        preOrderUnRecur(head);
-        inOrderUnRecur(head);
+//        inOrderUnRecur(head);
+//        aftOrderUnRecur(head);
     }
 
 
@@ -63,6 +63,8 @@ public class PreInPosTraversal {
     /**
      * 非递归版 中序遍历
      * 思路：将当前节点左部分全部入栈
+     * 1.当前节点为空，栈中弹出，打印，head指针右移
+     * 2.当前节点不为空，当前节点压入栈，head指针指向下一个左node
      */
     public static void inOrderUnRecur(TreeNode head) {
         System.out.println("in-order: ");
@@ -80,4 +82,37 @@ public class PreInPosTraversal {
             }
         }
     }
+
+
+    /**
+     * 思路:1.将树中节点按 中，右，左顺序入栈
+     * 2.使用辅助栈将其逆序弹出并打印
+     */
+    public static void aftOrderUnRecur(TreeNode head) {
+        if (null != head) {
+            Stack<TreeNode> s1 = new Stack<>();
+            Stack<TreeNode> s2 = new Stack<>();
+            s1.push(head);
+            while (!s1.isEmpty()) {
+                head = s1.pop();
+                s2.push(head);
+                if (null != head.left) {
+                    s1.push(head.left);
+                }
+                if (null != head.right) {
+                    s1.push(head.right);
+                }
+            }
+            while (!s2.isEmpty()) {
+                System.out.println(s2.pop().getValue());
+            }
+        }
+    }
+
+   /* public static TreeNode getLeftTreeMost(TreeNode node) {
+        if (node.left == null) {
+            return node;
+        }
+        return getLeftTreeMost(node.left);
+    }*/
 }
