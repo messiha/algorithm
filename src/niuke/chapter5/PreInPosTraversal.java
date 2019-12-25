@@ -31,9 +31,9 @@ public class PreInPosTraversal {
         if (null == head) {
             return;
         }
-//        System.out.println(head.getValue());//先序遍历
+        System.out.println(head.getValue());//先序遍历
         preOrderRecur(head.left);
-        System.out.println(head.getValue());//中序遍历
+//        System.out.println(head.getValue());//中序遍历
         preOrderRecur(head.right);
 //        System.out.println(head.getValue());//后序遍历
     }
@@ -109,10 +109,4 @@ public class PreInPosTraversal {
         }
     }
 
-   /* public static TreeNode getLeftTreeMost(TreeNode node) {
-        if (node.left == null) {
-            return node;
-        }
-        return getLeftTreeMost(node.left);
-    }*/
 }
