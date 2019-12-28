@@ -22,7 +22,8 @@ public class SerializeTree {
     public static void main(String[] args) {
         TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
         String res = serializeByPre(head);
-        System.out.println(res);
+        System.out.println("序列化:" + res);
+        preOrderRecur(reconstructionByPreString(res));
     }
 
     /**
@@ -62,4 +63,33 @@ public class SerializeTree {
         head.right = reconstructionByPre(queue);
         return head;
     }
+
+    /**
+     * 按层序列化
+     */
+    private static String serializeByLevel(TreeNode head) {
+        if (head == null) {
+            return "#_";
+        }
+        return null;
+    }
+
+    /**
+     * 按层反序列化
+     */
+
+
+    /**
+     * 先序遍历测试
+     */
+    private static void preOrderRecur(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+        System.out.println(head.getValue());
+        preOrderRecur(head.left);
+        preOrderRecur(head.right);
+
+    }
+
 }
