@@ -89,7 +89,6 @@ public class SerializeTree {
         System.out.println(head.getValue());
         preOrderRecur(head.left);
         preOrderRecur(head.right);
-
     }
 
 }

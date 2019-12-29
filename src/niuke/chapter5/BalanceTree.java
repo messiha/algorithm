@@ -25,17 +25,49 @@ import src.datastruct.TreeNode;
  */
 public class BalanceTree {
     public static void main(String[] args) {
-        TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
-        isBalanceTree(head);
+//      TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
+        TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(3, null, null), null), null);
+        boolean isBal = isBalanceTree(head);
+        System.out.println(isBal);
     }
 
-    private static void isBalanceTree(TreeNode head) {
+    private static boolean isBalanceTree(TreeNode head) {
+        return process(head).isBal;
+    }
 
+    private static Result process(TreeNode node) {
+        if (node == null) {
+            return new Result(true, 0); //空树是平衡树
+        }
+        Result leftRes = process(node.left);
+        //如果左树不平衡，直接返回
+        if (!leftRes.isBal) {
+            //isBal为false，h可以为0,只有左isBal，右isBal均为true，才会比较h的值
+            return new Result(false, 0);
+        }
+        Result rightRes = process(node.right);
+        //如果右树不平衡
+        if (!rightRes.isBal) {
+            return new Result(false, 0);
+        }
+        //如果左树平衡，右树平衡
+        if (Math.abs(leftRes.h - rightRes.h) > 1) {
+            return new Result(false, 0);
+        }
+        //左树平衡，右树平衡，返回树的高度为，左子树高度和右子树高度最大差值加1
+        return new Result(true, Math.max(leftRes.h, rightRes.h) + 1);
     }
 
     static class Result {
+        //是否平衡
         private boolean isBal;
+        //高度
         private int h;
+
+        public Result(boolean isBal, int h) {
+            this.isBal = isBal;
+            this.h = h;
+        }
     }
 
 
