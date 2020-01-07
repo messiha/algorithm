@@ -56,6 +56,6 @@ public class CompleteBinaryTree {
             }
 
         }
-        return false;
+        return true;
     }
 }
