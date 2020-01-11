@@ -67,13 +67,4 @@ public class CompleteBinaryTreeNumberOfNodes {
         return level - 1;
     }
 
-    private static int numOfRecur(TreeNode node) {
-        if (null == node) {
-            return 0;
-        }
-        int L = numOfRecur(node.left);
-        int R = numOfRecur(node.right);
-        return L + R;
-    }
-
 }
