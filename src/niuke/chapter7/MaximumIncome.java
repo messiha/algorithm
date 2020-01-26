@@ -41,6 +41,7 @@ public class MaximumIncome {
             while (!minCostQ.isEmpty() && minCostQ.peek().c <= w) {
                 maxProfitQ.add(minCostQ.poll());
             }
+            //minCostQ.peek().c <= w 不成立
             if (maxProfitQ.isEmpty()) {
                 return w;
             }
