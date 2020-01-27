@@ -27,7 +27,7 @@ public class TowerOfHanoi {
      * @param help
      */
     public static void process(int N, String from, String to, String help) {
-        if (N == 1) {// 1~1的问题，代表已经是最上层，直接从from移动到to
+        if (N == 1) {// 1~1的问题，代表已经是最下层，直接从from移动到to
             System.out.println("Move 1 from " + from + " to" + to);
         } else { //1~n的问题
             process(N - 1, from, help, to);
