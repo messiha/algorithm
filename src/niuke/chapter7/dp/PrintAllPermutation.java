@@ -24,9 +24,11 @@ public class PrintAllPermutation {
         if (index == chars.length) {
             System.out.println(chars);
         }
+        // 从index位开始的每个字符,都尝试放在新排列的k这个位置
         for (int i = index; i < chars.length; i++) {
-            swap(chars, i, index);
+            swap(chars, i, index); //i从0开始，将index和index之后位置的数和i位置交换
             printAllPermutation(chars, index + 1);
+            //交换回去，for循环未结束，没有确定i位置上的数，i=1到i=2之前需要复原到交换前
             swap(chars, i, index);
         }
     }
