@@ -55,13 +55,94 @@ public class KMP {
         }
         if (j == M) return i - M;
         else return N;
-
     }
 
+    /**
+     * KMP
+     */
+    private static int getIndexOf(String txt, String pat) {
+        if (txt == null || pat == null || txt.length() < 1 || pat.length() < 1) {
+            return -1;
+        }
+        char[] str1 = txt.toCharArray();
+        char[] str2 = pat.toCharArray();
+        int i1 = 0;
+        int i2 = 0;
+        int[] nextArray = getNextArray(str2);
+        while (i1 < str1.length && i2 < str2.length) {
+            if (str1[i1] == str2[i2]) {
+                i1++;
+                i2++;
+            } else {
+                if (nextArray[i2] == -1) { //nextArray数组标注当前位置偏移信息
+                    //-1代表 str2数组的0位置 即str1和str2第一个位置就不匹配
+                    i1++;
+                } else {
+                    i2 = nextArray[i2];
+                }
+            }
+        }
+        //i1 == str1.length或i2 == str2.length 循环中止,检查i2下标
+        return i2 == str2.length ? i1 - i2 : -1;
+    }
+
+    /**
+     * 和str2数组长度一致且下标对应，代表当前字符前部分字符的最长前缀和最长后缀信息
+     * str 0位置前无字符串用人为规定-1
+     * str 1位置前只有一个字符,人为规定0代替(前提:前缀不能包含最后一个字符，后缀不能包含最前一个字符)
+     */
+    private static int[] getNextArray(char[] str) {
+        if (str.length == 1) return new int[]{-1};
+        int[] next = new int[str.length];
+        next[0] = -1;
+        next[1] = 0;
+        int i = 2;
+        int cn = 0;//跳转位置 (最长前缀的后一位),代表最长前缀长度
+        while (i < next.length) {
+            if (str[i - 1] == str[cn]) {
+                next[i++] = ++cn;
+            } else if (cn > 0) { //cn位置和i-1位置不相等
+                cn = next[cn];
+            } else {
+                next[i++] = 0;
+            }
+        }
+        return next;
+    }
+
+
+    /**
+     * 扩展问题：
+     * 给定原始串,只能在原始串后添加新字符，要求生成的新串必须包含两份原始串,并且要求新串最短
+     * ag: abcabc 调用函数后 abcabcabc
+     *
+     * 思路：求abcabc后一个位置的最大前缀和最大后缀
+     */
+
+
+    /**
+     * 树A和树B,判断A中是否存在某一子树,使得A中的子树和B结构和数据完全一致
+     * 思路：A和B序列化成字符串
+     */
+
+    /**
+     * 判断某一字符串是否符合str = str_sub * N这种形式
+     * ag:123123123123   =  123 * 4
+     * 转换成求最长前缀和最长后缀问题
+     */
+
+
+    /**
+     * 回文半径数组
+     * 回文右边界 / 回文右边界中心
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         String txt = "ABACADABRAC";
         String pat = "ABRA";
         System.out.println(search_01(pat, txt));
         System.out.println(search_02(pat, txt));
+        System.out.println(getIndexOf(txt, pat));
     }
 }
