@@ -1,4 +1,4 @@
-package src;
+package src.exercise;
 
 import src.datastruct.TreeNode;
 
