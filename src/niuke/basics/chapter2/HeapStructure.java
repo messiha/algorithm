@@ -49,6 +49,7 @@ public class HeapStructure {
 
     /**
      * heapInsert 加入一个新节点并且向上调整的过程
+     * 下标index节点每次和index的父节点比较
      */
     private static void heapInsert(int[] arr, int index) {
         //arr[(index - 1) / 2] 父节点值

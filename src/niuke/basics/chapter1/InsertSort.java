@@ -5,9 +5,22 @@ package src.niuke.basics.chapter1;
  * 最坏时间复杂度：o(n^2)
  * 最优时间复杂度:o(n)   对于有序序列
  * 稳定性：稳定
- *
  */
 public class InsertSort {
+    public static void insertSort3(int[] arr) {
+        if (null == arr || arr.length < 2) {
+            return;
+        }
+        for (int i = 1; i != arr.length; i++) {
+            for (int j = i; j != 0; j--) {
+                if (arr[j - 1] > arr[j]) {
+                    swap(arr, j, j - 1);
+                }
+            }
+        }
+    }
+
+
     //方式一
     public static void insertSort1(int[] arr) {
         if (null == arr || arr.length < 2) {
@@ -47,10 +60,10 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {5, 4};
-        insertSort2(arr);
+        int[] arr = {3, 2, 5, 1, 9, 0, 4, 6};
+        insertSort3(arr);
         for (int item : arr) {
-            System.out.println(item);
+            System.out.print(item);
         }
     }
 }

@@ -122,7 +122,7 @@ public class KMP {
 
     /**
      * 树A和树B,判断A中是否存在某一子树,使得A中的子树和B结构和数据完全一致
-     * 思路：A和B序列化成字符串
+     * 思路：A和B序列化成字符串，KMP算法判断B是否为A的子串
      */
 
     /**
@@ -131,13 +131,6 @@ public class KMP {
      * 转换成求最长前缀和最长后缀问题
      */
 
-
-    /**
-     * 回文半径数组
-     * 回文右边界 / 回文右边界中心
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         String txt = "ABACADABRAC";
         String pat = "ABRA";
