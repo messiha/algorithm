@@ -20,11 +20,14 @@ package src.niuke.advance.chapter2;
 public class BFPRT {
 
     private static int getMinKthByBFPRT(int[] arr, int k) {
-        return select(arr, 0, arr.length - 1, k);
+        //这里k必须减少1
+        return select(arr, 0, arr.length - 1, k - 1);
     }
 
     /**
      * 在[begin,end]范围求第k小的数
+     * <p>
+     * 方法带疑问,select调用处k-1必须，仅供参考
      *
      * @return
      */
@@ -43,6 +46,7 @@ public class BFPRT {
         } else if (k < pivotRange[0]) {
             return select(arr, begin, pivotRange[0] - 1, k);
         } else {
+            //这里产生错误！如果select函数最终长度小于k会计算错误 例如划分到最后 ag: arr = {4,5} k = 3
             return select(arr, pivotRange[1] + 1, end, k);
         }
     }
@@ -64,7 +68,8 @@ public class BFPRT {
             //对arr数组等分后的逻辑小组求中位数 并填充入mArr数组
             mArr[i] = getMedian(arr, beginI, Math.min(end, endI));
         }
-        //对中位数数组求中位数
+        //对中位数数组求中位数   select函数求第K小的数,传入mArr.length / 2 即求mArr数组中第2/length小的数
+        // 也就是中位数
         return select(mArr, 0, mArr.length - 1, mArr.length / 2);
     }
 
@@ -121,7 +126,7 @@ public class BFPRT {
     }
 
     public static void main(String[] args) {
-        int[] arr = {7, 3, 4, 5, 9, 8, 0, 6};
-        System.out.println(getMinKthByBFPRT(arr, 3));
+        int[] arr = {3, 4, 4, 7};
+        System.out.println(getMinKthByBFPRT(arr, 4));
     }
 }
