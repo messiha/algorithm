@@ -17,17 +17,17 @@ public class Solution05 {
      * NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
      */
     public static void main(String[] args) {
-        int[] array = {4,5,6,7,8,1,2,3};
+        int[] array = {4, 5, 6, 7, 8, 1, 2, 3};
         int min = minNumberInRotateArray(array);
         System.out.println(min);
     }
 
     public static int minNumberInRotateArray(int[] array) {
-            if (array.length == 0) {
-                return 0;
-            }
-            int low = 0;
-            int high = array.length - 1;
+        if (array.length == 0) {
+            return 0;
+        }
+        int low = 0;
+        int high = array.length - 1;
 
         while (low < high) {
             if (array[low] < array[high]) {

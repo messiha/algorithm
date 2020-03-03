@@ -29,9 +29,11 @@ public class Solution02 {
                 return true;
             } else if (array[i][j] < target) {
                 //小于：右移
-                j++;continue;
+                j++;
+                continue;
             } else if (array[i][j] > target) {
-                i--;continue;
+                i--;
+                continue;
             }
         }
         return false;

@@ -37,9 +37,11 @@ public class KMP {
                     break;
                 }
             }
-            if (j == M) return i; //找到匹配
+            //找到匹配
+            if (j == M) return i;
         }
-        return N;//未找到匹配
+        //未找到匹配
+        return N;
     }
 
     private static int search_02(String pat, String txt) {
@@ -125,6 +127,7 @@ public class KMP {
      * 思路：A和B序列化成字符串，KMP算法判断B是否为A的子串
      */
 
+
     /**
      * 判断某一字符串是否符合str = str_sub * N这种形式
      * ag:123123123123   =  123 * 4
@@ -137,5 +140,7 @@ public class KMP {
         System.out.println(search_01(pat, txt));
         System.out.println(search_02(pat, txt));
         System.out.println(getIndexOf(txt, pat));
+//      System.out.println(search_03(pat, txt));
     }
+
 }

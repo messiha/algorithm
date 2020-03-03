@@ -55,7 +55,7 @@ public class Fibonacci {
 
             //a代表大值,b代表小值
             b = a;
-
+            //将上一次的计算结果赋值给a
             a = res;
         }
         return res;
