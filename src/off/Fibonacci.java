@@ -18,7 +18,7 @@ public class Fibonacci {
      */
     public static void main(String[] args) {
 
-        System.out.println(solutionByRecur(40));
+        System.out.println(solutionByRecur(4000));
         System.out.println(solutionByDp(40));
 
     }
