@@ -17,7 +17,7 @@ import java.util.Stack;
 /**
  * 题目一：实现一个特殊的栈，在实现栈的基本功能基础上，增加返回栈中最小元素的操作
  * 要求：1）pop,push,getMin操作最小时间复杂度都是O(1)
- *      2）设计栈类型可以使用线程的栈结构
+ * 2）设计栈类型可以使用线程的栈结构
  * <p>
  * 思路一：设计两个栈 一个正常栈，一个最小栈
  * push操作中如果栈为空 正常栈和最小栈直接压入
@@ -77,6 +77,7 @@ public class Issue03 {
 
     /**
      * 仅用队列结构实现栈结构
+     * 思路：pop()保留最后一个值返回，其余值进入另一个队列
      */
     static class TwoQueueStack {
         private Queue<Integer> data;
@@ -99,7 +100,7 @@ public class Issue03 {
                 help.add(data.poll());
             }
             int res = data.poll();
-            //将help——>data 队列
+            //交换data,和help引用
             swap();
             return res;
         }

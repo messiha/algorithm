@@ -12,7 +12,7 @@ package src.exercise;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};
-        System.out.println(BinarySearch.bsRecur(arr, 0, arr.length - 1, 7));
+        System.out.println(BinarySearch.bsRecur(arr, 0, arr.length - 1, 5));
 //        System.out.println(Arrays.toString(arr));
     }
 

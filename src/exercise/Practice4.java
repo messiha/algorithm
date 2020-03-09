@@ -1,54 +1,63 @@
 package src.exercise;
 
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Practice4 {
+    Queue<Integer> data;
+    Queue<Integer> help;
 
-    public static void main(String[] args) {
-//        int[] arr = {5, 4, 3, 2, 1};
-        int[] arr = {1, 3, 4, 2, 5};
-        System.out.println(mergeSort(arr));
-        System.out.println(Arrays.toString(arr));
+    public Practice4() {
+        this.data = new LinkedList<>();
+        this.help = new LinkedList<>();
     }
 
-    private static int mergeSort(int[] arr) {
-        if (arr == null || arr.length <= 1) {
-            return 0;
-        }
-        return sortProcess(arr, 0, arr.length - 1);
+    private void push(int node) {
+        data.add(node);
     }
 
-
-    private static int sortProcess(int[] arr, int l, int r) {
-        if (l == r) {
-            return 0;
+    private int pop() {
+        if (data.isEmpty()) {
+            throw new RuntimeException("stack is empty!");
         }
-        int mid = l + ((r - l) >> 1);
-        return sortProcess(arr, l, mid) +
-                sortProcess(arr, mid + 1, r) +
-                merge(arr, l, r, mid);
-    }
-
-    private static int merge(int[] arr, int l, int r, int mid) {
-        int[] help = new int[r - l + 1];
-        int hi = 0;
-        int p1 = l;
-        int p2 = mid + 1;
-        int res = 0;
-        while (p1 <= mid && p2 <= r) {
-            res += arr[p1] < arr[p2] ? arr[p1] * (r - p2 + 1) : 0;
-            help[hi++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
+        while (data.size() != 1) {
+            help.add(data.poll());
         }
-        while (p1 <= mid) {
-            help[hi++] = arr[p1++];
-        }
-        while (p2 <= r) {
-            help[hi++] = arr[p2++];
-        }
-        for (int i = 0; i < help.length; i++) {
-            arr[l + i] = help[i];
-        }
+        int res = data.poll();
+        swap();
         return res;
     }
+
+    private int peek() {
+        if (data.isEmpty()) {
+            throw new RuntimeException("stack is empty!");
+        }
+        while (data.size() != 1) {
+            help.add(data.poll());
+        }
+        int res = data.poll();
+        swap();
+        data.add(res);
+        return res;
+    }
+
+    private void swap() {
+        Queue<Integer> tmp = data;
+        data = help;
+        help = tmp;
+    }
+
+    public static void main(String[] args) {
+        Practice4 s4 = new Practice4();
+        s4.push(1);
+        s4.push(2);
+        s4.push(3);
+        System.out.println(s4.peek());
+        System.out.println(s4.peek());
+        s4.push(4);
+        System.out.println(s4.pop());
+        System.out.println(s4.pop());
+    }
+
 
 }

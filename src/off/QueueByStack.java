@@ -23,16 +23,15 @@ import java.util.Stack;
  * 以此出队列并放入队列B，直到队列A中的元素留下一个，然后队列A出队列，再把
  * 队列B中的元素出队列以此放入队列A中。
  */
-public class Solution04 {
+public class QueueByStack {
     Stack<Integer> stack1 = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();
 
     public static void main(String[] args) {
-        Solution04 s4 = new Solution04();
+        QueueByStack s4 = new QueueByStack();
         s4.push(1);
         s4.push(2);
         s4.push(3);
-
 
         System.out.println(s4.pop());
     }
