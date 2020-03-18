@@ -19,7 +19,7 @@ package src.niuke.basics.chapter3;
  * 2.一定会有一个"空桶"
  * 3.则最大差值一定不来自桶内部 （相同桶内的数值的差值一定小于 两个非空桶之间的差值）
  */
-public class Issue01 {
+public class MaxDiffOfAdjacentNumber {
 
     public static void main(String[] args) {
         int[] arr = {7, 2, 3, 1, 9};

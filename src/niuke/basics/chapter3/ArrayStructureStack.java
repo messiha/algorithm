@@ -13,7 +13,7 @@ package src.niuke.basics.chapter3;
 /**
  * 用数组结构实现大小固定的队列和栈
  */
-public class Issue02 {
+public class ArrayStructureStack {
     public static void main(String[] args) {
 
     }

@@ -23,7 +23,7 @@ import java.util.Stack;
  * push操作中如果栈为空 正常栈和最小栈直接压入
  * 如果不为空 比较入值和最小栈栈顶大小，如果小于最小栈栈顶 压入，如果大于则重复压入最小栈栈顶数值
  */
-public class Issue03 {
+public class LeastStack {
 
     public static void main(String[] args) {
         TwoStackQueue twoStackQueue = new TwoStackQueue();
