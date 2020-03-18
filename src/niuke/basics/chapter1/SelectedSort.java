@@ -4,6 +4,7 @@ package src.niuke.basics.chapter1;
 /**
  * 选择排序：选择最小的和第一个位置交换，选择次小的和第二个位置交换...
  * 时间复杂度：O(n^2)
+ * 不稳定
  */
 public class SelectedSort {
 

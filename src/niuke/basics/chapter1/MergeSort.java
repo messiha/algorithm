@@ -17,6 +17,7 @@ public class MergeSort {
      * 时间复杂度：N*logN
      * 额外空间复杂度 O(N)
      * 递归(分治)思想
+     * 稳定
      */
 
     private static void mergeSort(int[] arr) {
