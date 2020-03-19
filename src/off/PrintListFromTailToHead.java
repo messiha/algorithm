@@ -86,7 +86,6 @@ public class PrintListFromTailToHead {
         return list;
     }
 
-
     public static ArrayList<Integer> printByInsertHead(SingleListNode node) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         SingleListNode head = node;
