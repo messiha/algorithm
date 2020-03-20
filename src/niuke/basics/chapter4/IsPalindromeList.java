@@ -10,7 +10,7 @@ package src.niuke.basics.chapter4;
  * @date 2019/10/26 16:16
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 import java.util.Stack;
 
@@ -26,16 +26,16 @@ import java.util.Stack;
  */
 public class IsPalindromeList {
     public static void main(String[] args) {
-        SingleListNode head = new SingleListNode(1);
+        ListNode head = new ListNode(1);
         /*head.next = new SingleListNode(2);
         head.next.next = new SingleListNode(3);
         head.next.next.next = new SingleListNode(2);
         head.next.next.next.next = new SingleListNode(1);*/
 
 
-        head.next = new SingleListNode(2);
-        head.next.next = new SingleListNode(2);
-        head.next.next.next = new SingleListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(2);
+        head.next.next.next = new ListNode(1);
 
         System.out.println(IsPalindrome2(head));
 
@@ -45,25 +45,25 @@ public class IsPalindromeList {
      * 方式2
      * need O(1) extra space
      */
-    private static boolean IsPalindrome2(SingleListNode head) {
+    private static boolean IsPalindrome2(ListNode head) {
         if (null == head || head.next == null) {
             return true;
         }
-        SingleListNode fast = head;
-        SingleListNode slow = head;
+        ListNode fast = head;
+        ListNode slow = head;
         //fast.next.next != null   保证不会为null fast = fast.next.next;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next; //slow>mid
             fast = fast.next.next;//fast>end
         }
-        SingleListNode tmp = slow;
+        ListNode tmp = slow;
 
         //以slow为head 翻转链表
-        SingleListNode tailHead = reversLink(tmp);
+        ListNode tailHead = reversLink(tmp);
 
         //判断是否为回文链表
-        SingleListNode right = head;
-        SingleListNode left = head;
+        ListNode right = head;
+        ListNode left = head;
         boolean res = true;
         while (left != null && right != null) {
             if (left.val != right.val) {
@@ -83,9 +83,9 @@ public class IsPalindromeList {
      * 方式1
      * need N extra space
      */
-    private static boolean IsPalindrome1(SingleListNode head) {
-        Stack<SingleListNode> stack = new Stack<>();
-        SingleListNode cur = head;
+    private static boolean IsPalindrome1(ListNode head) {
+        Stack<ListNode> stack = new Stack<>();
+        ListNode cur = head;
         while (cur != null) {
             stack.add(cur);
             cur = cur.next;
@@ -99,11 +99,11 @@ public class IsPalindromeList {
         return true;
     }
 
-    private static SingleListNode reversLink(SingleListNode head) {
+    private static ListNode reversLink(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        SingleListNode newHead = reversLink(head.next);
+        ListNode newHead = reversLink(head.next);
         head.next.next = head;
         head.next = null;
         return newHead;

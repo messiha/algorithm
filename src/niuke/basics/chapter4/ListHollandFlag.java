@@ -10,7 +10,7 @@ package src.niuke.basics.chapter4;
  * @date 2019/10/27 14:18
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 单项链表荷兰旗问题
@@ -21,25 +21,25 @@ import src.datastruct.SingleListNode;
  */
 public class ListHollandFlag {
     public static void main(String[] args) {
-        SingleListNode head = new SingleListNode(9);
-        head.next = new SingleListNode(0);
-        head.next.next = new SingleListNode(4);
-        head.next.next.next = new SingleListNode(5);
-        head.next.next.next.next = new SingleListNode(1);
-        head.next.next.next.next.next = new SingleListNode(3);
+        ListNode head = new ListNode(9);
+        head.next = new ListNode(0);
+        head.next.next = new ListNode(4);
+        head.next.next.next = new ListNode(5);
+        head.next.next.next.next = new ListNode(1);
+        head.next.next.next.next.next = new ListNode(3);
         int pivot = 3;
-        SingleListNode newHead = listPartition(head, pivot);
+        ListNode newHead = listPartition(head, pivot);
     }
 
     //使用辅助数组
-    private static SingleListNode listPartition(SingleListNode head, int pivot) {
-        SingleListNode cur = head;
+    private static ListNode listPartition(ListNode head, int pivot) {
+        ListNode cur = head;
         int arrLength = 0;
         while (cur != null) {
             arrLength++;
             cur = cur.next;
         }
-        SingleListNode[] nodeArr = new SingleListNode[arrLength];
+        ListNode[] nodeArr = new ListNode[arrLength];
         //将链表node放入 nodeArr
         cur = head;
         for (int i = 0; i < arrLength; i++) {
@@ -57,7 +57,7 @@ public class ListHollandFlag {
     }
 
 
-    private static void nodeArrPartition(SingleListNode[] nodeArr, int pivot) {
+    private static void nodeArrPartition(ListNode[] nodeArr, int pivot) {
         int less = -1;
         int more = nodeArr.length;
         int index = 0;
@@ -74,8 +74,8 @@ public class ListHollandFlag {
         }
     }
 
-    private static void swap(SingleListNode[] nodeArr, int l, int m) {
-        SingleListNode tmp = nodeArr[l];
+    private static void swap(ListNode[] nodeArr, int l, int m) {
+        ListNode tmp = nodeArr[l];
         nodeArr[l] = nodeArr[m];
         nodeArr[m] = tmp;
     }
@@ -84,16 +84,16 @@ public class ListHollandFlag {
     /**
      * 空间复杂度O(1) 方式
      */
-    private static SingleListNode partition(SingleListNode head, int target) {
+    private static ListNode partition(ListNode head, int target) {
         //小于区域head
-        SingleListNode sH = null;
+        ListNode sH = null;
         //小于区域tail
-        SingleListNode sT = null;
-        SingleListNode eH = null;
-        SingleListNode eT = null;
-        SingleListNode bH = null;
-        SingleListNode bT = null;
-        SingleListNode next;
+        ListNode sT = null;
+        ListNode eH = null;
+        ListNode eT = null;
+        ListNode bH = null;
+        ListNode bT = null;
+        ListNode next;
         while (head != null) {
             next = head.next;
             head.next = null;

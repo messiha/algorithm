@@ -10,29 +10,29 @@ package src.niuke.basics.chapter4;
  * @date 2019/10/16 23:46
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 翻转单向链表
  */
 public class ReverseOneWayListNode {
     public static void main(String[] args) {
-        SingleListNode n1 = new SingleListNode(1);
-        SingleListNode n2 = new SingleListNode(2);
-        SingleListNode n3 = new SingleListNode(3);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(3);
         n1.next = n2;
         n2.next = n3;
-        SingleListNode head = reverseByLoop(n1);
+        ListNode head = reverseByLoop(n1);
         System.out.println(head.next.val);
     }
 
-    public static SingleListNode reverseByLoop(SingleListNode head) {
+    public static ListNode reverseByLoop(ListNode head) {
         if (null == head || head.next == null) {
             return head;
         }
-        SingleListNode p1 = head;
-        SingleListNode p2 = head.next;
-        SingleListNode tmp = null;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        ListNode tmp = null;
         while (p2 != null) {
             tmp = p2.next;
             p2.next = p1;
@@ -44,11 +44,11 @@ public class ReverseOneWayListNode {
     }
 
 
-    public static SingleListNode reverseByRecursion(SingleListNode head) {
+    public static ListNode reverseByRecursion(ListNode head) {
         if (null == head || head.next == null) {
             return head;
         }
-        SingleListNode newHead = reverseByRecursion(head.next);
+        ListNode newHead = reverseByRecursion(head.next);
         head.next.next = head;
         head.next = null;
         return newHead;

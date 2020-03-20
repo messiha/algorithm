@@ -5,7 +5,7 @@
  */
 package src.off;
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,16 +25,16 @@ public class PrintListFromTailToHead {
     private static ArrayList<Integer> list = new ArrayList<Integer>();
 
     public static void main(String[] args) {
-        SingleListNode n1 = new SingleListNode(1);
-        SingleListNode n2 = new SingleListNode(2);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
         n1.setNext(n2);
         ArrayList<Integer> integers = printListFromTailToHead(n1);
         System.out.println(Arrays.toString(integers.toArray()));
     }
 
-    public static ArrayList<Integer> printByListReverse(SingleListNode node) {
+    public static ArrayList<Integer> printByListReverse(ListNode node) {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        SingleListNode head = node;
+        ListNode head = node;
         while (head != null) {
             list.add(head.val);
             head = head.next;
@@ -61,12 +61,12 @@ public class PrintListFromTailToHead {
         list.set(j, tmp);
     }
 
-    public static ArrayList<Integer> printListFromTailToHead(SingleListNode singleListNode) {
+    public static ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         //思路2 栈
         Stack<Integer> stack = new Stack<>();
-        while (singleListNode != null) {
-            stack.push(singleListNode.val);
-            singleListNode = singleListNode.next;
+        while (listNode != null) {
+            stack.push(listNode.val);
+            listNode = listNode.next;
 
         }
         ArrayList<Integer> list = new ArrayList<Integer>();
@@ -78,17 +78,17 @@ public class PrintListFromTailToHead {
 
     }
 
-    public static ArrayList<Integer> printByRecur(SingleListNode singleListNode) {
-        if (singleListNode != null) {
-            ArrayList<Integer> list = printByRecur(singleListNode.next);
-            list.add(singleListNode.val);
+    public static ArrayList<Integer> printByRecur(ListNode listNode) {
+        if (listNode != null) {
+            ArrayList<Integer> list = printByRecur(listNode.next);
+            list.add(listNode.val);
         }
         return list;
     }
 
-    public static ArrayList<Integer> printByInsertHead(SingleListNode node) {
+    public static ArrayList<Integer> printByInsertHead(ListNode node) {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        SingleListNode head = node;
+        ListNode head = node;
         while (head != null) {
             list.add(head.val);
             head = head.next;

@@ -10,7 +10,7 @@ package src.off;
  * @date 2020/3/19 21:32
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 反转链表:输入一个链表，反转链表后，输出新链表的表头。
@@ -18,24 +18,24 @@ import src.datastruct.SingleListNode;
 public class ReverseList {
 
     public static void main(String[] args) {
-        SingleListNode n1 = new SingleListNode(1);
-        SingleListNode n2 = new SingleListNode(2);
-        SingleListNode n3 = new SingleListNode(3);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(3);
         n1.next = n2;
         n2.next = n3;
 
 //        SingleListNode head1 = reverseByRecursion(n1);
-        SingleListNode head2 = reverseByPoint(n1);
+        ListNode head2 = reverseByPoint(n1);
         System.out.println(head2.next.next.val);
     }
 
-    private static SingleListNode reverseByPoint(SingleListNode head) {
+    private static ListNode reverseByPoint(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        SingleListNode p1 = head;
-        SingleListNode p2 = head.next;
-        SingleListNode tmp;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        ListNode tmp;
         while (p2 != null) {
             tmp = p2.next;
             p2.next = p1;
@@ -46,11 +46,11 @@ public class ReverseList {
         return p1;
     }
 
-    private static SingleListNode reverseByRecursion(SingleListNode head) {
+    private static ListNode reverseByRecursion(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        SingleListNode newHead = reverseByRecursion(head.next);
+        ListNode newHead = reverseByRecursion(head.next);
         head.next.next = head;
         head.next = null;
         return newHead;

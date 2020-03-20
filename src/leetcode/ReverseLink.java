@@ -6,7 +6,7 @@ package src.leetcode;
  * @date 2019/8/19 22:52
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 翻转链表
@@ -14,23 +14,23 @@ import src.datastruct.SingleListNode;
 public class ReverseLink {
 
     public static void main(String[] args) {
-        SingleListNode n1 = new SingleListNode(1);
-        SingleListNode n2 = new SingleListNode(2);
-        SingleListNode n3 = new SingleListNode(3);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(3);
         n1.next = n2;
         n2.next = n3;
 
-        SingleListNode head = reverseByRecursion(n1);
+        ListNode head = reverseByRecursion(n1);
         System.out.println(head.next.val);
     }
 
-    public static SingleListNode reverseByLoop(SingleListNode head) {
+    public static ListNode reverseByLoop(ListNode head) {
         if (null == head || null == head.next) {
             return head;
         }
-        SingleListNode p1 = head;
-        SingleListNode p2 = head.next;
-        SingleListNode temp;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        ListNode temp;
         while (null != p2) {
             //定义临时指针temp 指p2.next
             temp = p2.next;
@@ -46,11 +46,11 @@ public class ReverseLink {
 
 
     //递归方式翻转
-    private static SingleListNode reverseByRecursion(SingleListNode head) {
+    private static ListNode reverseByRecursion(ListNode head) {
         if (null == head || null == head.next) {
             return head;
         }
-        SingleListNode newHead = reverseByRecursion(head.next);
+        ListNode newHead = reverseByRecursion(head.next);
         //Node2 指向 Node1
         head.next.next = head;
         head.next = null;

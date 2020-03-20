@@ -10,7 +10,7 @@ package src.niuke.basics.chapter4;
  * @date 2019/12/7 19:09
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 两个单链表相交的问题
@@ -20,13 +20,13 @@ import src.datastruct.SingleListNode;
  */
 public class FindFirstNode {
 
-    public static SingleListNode getIntersectNode(SingleListNode head1, SingleListNode head2) {
+    public static ListNode getIntersectNode(ListNode head1, ListNode head2) {
         if (null == head1 || null == head2) {
             return null;
         }
         //判断链表是否有环，若有，返回第一个入环Node
-        SingleListNode loop1 = getFirstLoopNode(head1);
-        SingleListNode loop2 = getFirstLoopNode(head2);
+        ListNode loop1 = getFirstLoopNode(head1);
+        ListNode loop2 = getFirstLoopNode(head2);
 
         if (loop1 == null && loop2 == null) {
             //两个无环链表
@@ -40,10 +40,10 @@ public class FindFirstNode {
         return null;
     }
 
-    private static SingleListNode noLoop(SingleListNode head1, SingleListNode head2) {
+    private static ListNode noLoop(ListNode head1, ListNode head2) {
         //算出长度和最后一个Node
-        SingleListNode cur1 = head1;
-        SingleListNode cur2 = head2;
+        ListNode cur1 = head1;
+        ListNode cur2 = head2;
         int n = 0;//两个链表长度差值
         while (cur1.next != null) {
             n++;
@@ -79,9 +79,9 @@ public class FindFirstNode {
      * 1.loop1==loop2 相交
      * 2.如果
      */
-    private static SingleListNode bothLoop(SingleListNode head1, SingleListNode loop1, SingleListNode head2, SingleListNode loop2) {
-        SingleListNode cur1 = head1;
-        SingleListNode cur2 = head2;
+    private static ListNode bothLoop(ListNode head1, ListNode loop1, ListNode head2, ListNode loop2) {
+        ListNode cur1 = head1;
+        ListNode cur2 = head2;
         if (loop1 == loop2) {
             //一定相交，返回第一个交点，转换成单链表相交问题
             return noLoop(head1, head2);
@@ -102,11 +102,11 @@ public class FindFirstNode {
      * 1.快，慢指针
      * 2.hashSet
      */
-    private static SingleListNode getFirstLoopNode(SingleListNode head) {
+    private static ListNode getFirstLoopNode(ListNode head) {
         //快指针next过程中遇到null，返回无环，有环链表不会为null，若有环，快指针和慢指针一定在环上相遇
         //相遇时刻 快指针回到head，快指针一次走一步，快慢指针一定在入环节点相遇(数学归纳法证明)
-        SingleListNode n1 = head; //slow
-        SingleListNode n2 = head; //fast
+        ListNode n1 = head; //slow
+        ListNode n2 = head; //fast
 
         while (n1 != n2) {
             if (n2.next == null || n1.next.next == null) {

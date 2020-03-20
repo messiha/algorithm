@@ -10,14 +10,14 @@ package src.niuke.basics.chapter4;
  * @date 2019/10/26 16:12
  */
 
-import src.datastruct.SingleListNode;
+import src.datastruct.ListNode;
 
 /**
  * 打印两个有序链表的公共部分
  * 给定两个有序链表的头指针head1和head2，打印两个链表的公共部分
  */
 public class PrintLinkedCommonPart {
-    private static void printCommonPart(SingleListNode h1, SingleListNode h2) {
+    private static void printCommonPart(ListNode h1, ListNode h2) {
         while (h1 != null && h2 != null) {
             if (h1.val > h2.val) {
                 h2 = h2.next;
@@ -33,20 +33,20 @@ public class PrintLinkedCommonPart {
     }
 
     public static void main(String[] args) {
-        SingleListNode h1 = new SingleListNode(1);
-        h1.next = new SingleListNode(2);
-        h1.next.next = new SingleListNode(3);
+        ListNode h1 = new ListNode(1);
+        h1.next = new ListNode(2);
+        h1.next.next = new ListNode(3);
 
-        SingleListNode h2 = new SingleListNode(3);
-        h2.next = new SingleListNode(4);
-        h2.next.next = new SingleListNode(5);
+        ListNode h2 = new ListNode(3);
+        h2.next = new ListNode(4);
+        h2.next.next = new ListNode(5);
 
         printLinkedList(h1);
         printLinkedList(h2);
         printCommonPart(h1, h2);
     }
 
-    private static void printLinkedList(SingleListNode h2) {
+    private static void printLinkedList(ListNode h2) {
         System.out.print("Linked List: ");
         while (h2 != null) {
             System.out.print(h2.val);
