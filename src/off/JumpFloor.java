@@ -17,7 +17,7 @@ public class JumpFloor {
 
     public static void main(String[] args) {
         System.out.println(solution(4));
-        System.out.println(jumpFloorAbnormal(4));
+        System.out.println(jumpFloorAbnormal2(4));
     }
 
     /**
@@ -61,8 +61,12 @@ public class JumpFloor {
      * level = 3 => res = 4
      * level = 4 => res = 8  => f(4) = f(4-4)+f(4-3)+f(4-2)+f(4-1)
      * ...
+     * <p>
+     * f(n) = f(n-1)+f(n-2)+...+f(n-(n-1)) + f(n-n) => f(0) + f(1) + f(2) + f(3) + ... + f(n-1)
+     * f(n-1) = f(0) + f(1)+f(2)+f(3) + ... + f((n-1)-1) = f(0) + f(1) + f(2) + f(3) + ... + f(n-2)
+     * f(n) = 2*f(n-1)
      */
-    private static int jumpFloorAbnormal(int level) {
+    private static int jumpFloorAbnormal1(int level) {
         if (level == 1) return level;
         int a = 1;
         int res = 0;
@@ -71,5 +75,15 @@ public class JumpFloor {
             a = res;
         }
         return res;
+    }
+
+    private static int jumpFloorAbnormal2(int level) {
+        if (level == 0) {
+            return -1;
+        } else if (level == 1) {
+            return 1;
+        } else {
+            return 2 * jumpFloorAbnormal2(level - 1);
+        }
     }
 }
