@@ -18,7 +18,7 @@ import java.util.Queue;
  * <p>
  * 思路：分别定义猫队列，狗队列
  */
-public class Issue04 {
+public class CatDogQueue {
 
 
     /**
