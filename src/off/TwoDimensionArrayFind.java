@@ -14,7 +14,7 @@ package src.off;
  * 在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序
  * 给定一个数，判断是否在二维数组中
  */
-public class Solution02 {
+public class TwoDimensionArrayFind {
     public static void main(String[] args) {
         int[][] array = {{1, 2}, {3, 4}, {5, 6}};
         System.out.println(find(2, array));
