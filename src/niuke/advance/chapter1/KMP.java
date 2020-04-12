@@ -76,8 +76,9 @@ public class KMP {
                 i1++;
                 i2++;
             } else {
-                if (nextArray[i2] == -1) { //nextArray数组标注当前位置偏移信息
-                    //-1代表 str2数组的0位置 即str1和str2第一个位置就不匹配
+                //nextArray数组标注当前位置偏移信息
+                if (nextArray[i2] == -1) {
+                    //-1代表 str2数组的0位置,str2第一个字符就和str1匹配不上
                     i1++;
                 } else {
                     i2 = nextArray[i2];
@@ -99,13 +100,16 @@ public class KMP {
         next[0] = -1;
         next[1] = 0;
         int i = 2;
-        int cn = 0;//跳转位置 (最长前缀的后一位),代表最长前缀长度
+        //i-1位置跳转位置的下标 (最长前缀的后一位),代表最长前缀长度
+        int cn = 0;
         while (i < next.length) {
             if (str[i - 1] == str[cn]) {
                 next[i++] = ++cn;
-            } else if (cn > 0) { //cn位置和i-1位置不相等
+                //cn位置和i-1位置不相等,则比较next数组cn位置(str[next[cn]] 是否等于 str[i-1])
+            } else if (cn > 0) {
                 cn = next[cn];
             } else {
+                //直到cn = 0,str[i]位置的最长前缀和最长后缀长度为0
                 next[i++] = 0;
             }
         }
@@ -117,7 +121,7 @@ public class KMP {
      * 扩展问题：
      * 给定原始串,只能在原始串后添加新字符，要求生成的新串必须包含两份原始串,并且要求新串最短
      * ag: abcabc 调用函数后 abcabcabc
-     *
+     * aaa  ->  aaaa
      * 思路：求abcabc后一个位置的最大前缀和最大后缀
      */
 
