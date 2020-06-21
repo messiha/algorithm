@@ -20,7 +20,7 @@ package src.niuke.advance.chapter2;
 public class BFPRT {
 
     private static int getMinKthByBFPRT(int[] arr, int k) {
-        //这里k必须减少1
+        //这里k必须减少1 举例：{1,2,3} 第一小的数在0位置
         return select(arr, 0, arr.length - 1, k - 1);
     }
 
