@@ -27,6 +27,7 @@ import java.util.LinkedList;
  * 请实现一个函数
  * 输入：整形数组arr，窗口大小为w
  * 输出：一个长度为n-w+1的数组res，res[i]表示每一种窗口状态下的最大值
+ *
  * 以上述为例：结果返回[5,5,5,4,6,7]
  */
 public class MaxWindow {
