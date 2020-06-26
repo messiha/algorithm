@@ -20,7 +20,7 @@ package src.off;
  */
 public class LastRemaining {
     public static void main(String[] args) {
-
+        System.out.println(solutionBySimulate(10, 3));
     }
 
     /*

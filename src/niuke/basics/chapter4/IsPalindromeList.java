@@ -63,7 +63,7 @@ public class IsPalindromeList {
 
         //判断是否为回文链表
         ListNode right = head;
-        ListNode left = head;
+        ListNode left = tailHead;
         boolean res = true;
         while (left != null && right != null) {
             if (left.val != right.val) {

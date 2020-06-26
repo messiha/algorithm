@@ -17,4 +17,5 @@ package src.niuke.advance.chapter2;
  * 用途：对于一个array数组中的任意位置，在O(N)复杂度下找到 距离该位置最近 的 左侧比它大 ，右侧比它大的数。
  */
 public class MonotonyStack {
+
 }
