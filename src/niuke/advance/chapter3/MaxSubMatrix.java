@@ -43,7 +43,7 @@ public class MaxSubMatrix {
     }
 
     /**
-     * 对于二位数组的每一列都需要计算最大面积（可能存在很长的一列，存在这一列就是最大面积的可能性）
+     * 对于二位数组的每一行都需要计算最大面积（可能存在很长的一行，存在这一行就是最大面积的可能性）
      */
     private static int maxRecSize(int[][] map) {
         if (null == map || map.length == 0 || map[0].length == 0) {
