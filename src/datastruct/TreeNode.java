@@ -10,9 +10,10 @@ package src.datastruct;
  * @date 2019/12/15 11:34
  */
 public class TreeNode {
-    private int value;
+    public Integer value;
     public TreeNode left;
     public TreeNode right;
+    private TreeNode parent;
 
     public TreeNode(int value) {
         this.value = value;
@@ -22,6 +23,14 @@ public class TreeNode {
         this.value = value;
         this.left = left;
         this.right = right;
+    }
+
+
+    public TreeNode(int value, TreeNode parent, TreeNode left, TreeNode right) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+        this.parent = parent;
     }
 
     public int getValue() {
