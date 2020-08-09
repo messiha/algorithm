@@ -10,6 +10,9 @@ package src.niuke.advance.chapter4;
  * @date 2020/7/18 14:39
  */
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * 二叉树 --->  搜索二叉树（TreeMap ：key按照某种方式有序组织，组织方式就是二叉树，本质是红黑树）
  * <p>
@@ -42,4 +45,48 @@ package src.niuke.advance.chapter4;
  * 搜索二叉树：对于任意头节点，左节点小于该节点，右节点大于该节点
  */
 public class SortTree {
+
+    /**
+     * 如果操作行为只是根据key 查找 value 使用hashMap即可
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        //TreeMap数据结构为红黑树,所有key按有序组织，增删改查操作均为O(logN)代价
+        TreeMap<Integer, String> treeMap = new TreeMap<>();
+        treeMap.put(1, "zhang");
+        treeMap.put(2, "yan");
+        treeMap.put(25, "hai");
+        treeMap.put(3, "xiao");
+        treeMap.put(4, "yao");
+
+        //O(logN)
+        System.out.println(treeMap.get(1));
+        //O(logN)
+        System.out.println(treeMap.containsKey(2));
+
+        //返回最大值key，这颗搜索二叉树最大值,O(logN)
+        //与hashMap不同点，hash表中只能遍历O(N),
+        System.out.println(treeMap.lastKey());
+
+        System.out.println(treeMap.firstKey());
+
+        //25  如果值不存在，返回第一个比指定值大的那个值
+        //在hashMap中只能遍历解决
+        System.out.println(treeMap.ceilingKey(5));
+
+        //4 如果值不存在，返回第一个比指定值小的那个值
+        System.out.println(treeMap.floorKey(5));
+
+        System.out.println("==============================");
+
+
+        //TreeMap中key按照自然序排序，即遍历时key由小到大
+        //TreeMap中数据的组织方式为红黑树（平衡搜索二叉树)
+        for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(String.format("key:%s value:%s", key, value));
+        }
+    }
 }
