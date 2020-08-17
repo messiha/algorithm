@@ -32,12 +32,17 @@ public class BiggestSearchBinaryTree {
      * 1.递归返回对象（递归针对每个字结点都做同样操作，对任意结点左部分递归或右部分递归得到结构应该一致）
      */
     public static void main(String[] args) {
-
+        TreeNode head1 = new TreeNode(0, new TreeNode(2, new TreeNode(1, null, null), new TreeNode(3, null, null)), new TreeNode(5, null, null));
+        TreeNode head2 = new TreeNode(4, new TreeNode(2, new TreeNode(1, null, null), new TreeNode(3, null, null)), new TreeNode(5, null, null));
+        ReturnData data = process(head1);
+        System.out.println(data);
+        System.out.println(data.head.getValue());
     }
 
-    private ReturnData process(TreeNode head) {
+    private static ReturnData process(TreeNode head) {
         if (head == null) {
-            return new ReturnData(0, null, 0, 0);
+            //Integer.MIN_VALUE, Integer.MAX_VALUE 不干扰上层节点"决策"
+            return new ReturnData(0, null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
         TreeNode left = head.left;
         TreeNode right = head.right;
@@ -55,11 +60,23 @@ public class BiggestSearchBinaryTree {
 
         //可能性1，head节点左子树大小
         int p1 = leftData.size;
+        //可能性2
         int p2 = rightData.size;
 
-//        Math.max();
-        return new ReturnData(0, null, 0, 0);
+        int maxSize = Math.max(Math.max(p1, p2), includeSelf);
 
+        //可能性1 + 可能性2，最大头结点是该结点 左子搜索二叉树/右子搜索二叉树的头
+        TreeNode maxHead = p1 > p2 ? leftData.head : rightData.head;
+
+        //可能性3
+        if (maxSize == includeSelf) {
+            //以当前节点为头结点的树，是最大搜索二叉树，向"上一级"返回
+            maxHead = head;
+        }
+
+        return new ReturnData(maxSize, maxHead,
+                Math.max(Math.max(leftData.max, rightData.max), head.value),
+                Math.min(Math.min(leftData.min, rightData.min), head.value));
     }
 
 
@@ -72,7 +89,9 @@ public class BiggestSearchBinaryTree {
          * 左/右最大搜索二叉树头结点
          */
         private TreeNode head;
-
+        /**
+         * 左/右树最大值（注意：左树或右树上的最大值）
+         */
         private int max;
         private int min;
 
@@ -81,6 +100,16 @@ public class BiggestSearchBinaryTree {
             this.head = head;
             this.max = max;
             this.min = min;
+        }
+
+        @Override
+        public String toString() {
+            return "ReturnData{" +
+                    "size=" + size +
+                    ", head=" + head +
+                    ", max=" + max +
+                    ", min=" + min +
+                    '}';
         }
     }
 }
