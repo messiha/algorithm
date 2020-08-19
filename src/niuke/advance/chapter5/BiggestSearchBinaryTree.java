@@ -30,6 +30,14 @@ public class BiggestSearchBinaryTree {
      * <p>
      * 设计递归
      * 1.递归返回对象（递归针对每个字结点都做同样操作，对任意结点左部分递归或右部分递归得到结构应该一致）
+     *
+     *
+     * 1.穷举可能性
+     * 2.改递归
+     * 3.
+     * 1）假设当前节点 左部分和有部分能返回"需要的信息"
+     * 2）根据 左+右侧信息，决策当前节点需要"向上"返回的信息
+     * 3）设计baseCase返回
      */
     public static void main(String[] args) {
         TreeNode head1 = new TreeNode(0, new TreeNode(2, new TreeNode(1, null, null), new TreeNode(3, null, null)), new TreeNode(5, null, null));
