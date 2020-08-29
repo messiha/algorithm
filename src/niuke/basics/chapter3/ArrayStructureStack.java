@@ -15,7 +15,13 @@ package src.niuke.basics.chapter3;
  */
 public class ArrayStructureStack {
     public static void main(String[] args) {
-
+        ArrayQueue arrayQueue = new ArrayQueue(3);
+        arrayQueue.push(1);
+        arrayQueue.push(2);
+        arrayQueue.push(3);
+//        System.out.println(arrayQueue.poll());
+//        System.out.println(arrayQueue.poll());
+//        System.out.println(arrayQueue.poll());
     }
 
 
@@ -63,7 +69,9 @@ public class ArrayStructureStack {
         }
     }
 
-
+    /**
+     * 数组实现的 循环队列
+     */
     static class ArrayQueue {
         private Integer arr[];
         /**
@@ -116,7 +124,8 @@ public class ArrayStructureStack {
             }
             size++;
             arr[end] = obj;
-            end = end == arr.length - 1 ? 0 : end++;
+            //arr[end] = obj;end = end == arr.length - 1 ? 0 : end ++;  end++错误
+            end = end == arr.length - 1 ? 0 : end + 1;
         }
     }
 
