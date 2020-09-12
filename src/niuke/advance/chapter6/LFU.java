@@ -1,4 +1,4 @@
-package src.niuke.advance.chapter5;
+package src.niuke.advance.chapter6;
 
 import java.util.HashMap;
 import java.util.Objects;
