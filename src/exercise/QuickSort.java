@@ -5,6 +5,8 @@
  */
 package src.exercise;
 
+import java.util.Arrays;
+
 /**
  * @author yan.zhang
  * @date 2020/3/23 9:42
@@ -14,6 +16,7 @@ class QuickSort {
     public static void main(String[] args) {
         int[] arr = {4, 5, 6, 7, 8, 1, 2, 3};
         quickSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     private static void quickSort(int[] arr) {
