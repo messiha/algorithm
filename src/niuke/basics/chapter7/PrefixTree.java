@@ -124,6 +124,13 @@ public class PrefixTree {
     }
 
     public static void main(String[] args) {
+        Trie trie = new Trie();
 
+        trie.insert("zhang");
+        trie.insert("yan");
+        trie.insert("yan");
+        trie.insert("yan");
+
+        System.out.println(trie.search("yan"));
     }
 }
