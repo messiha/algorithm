@@ -68,39 +68,6 @@ public class MaxXor {
         }
 
         return max;
-
-    }
-
-    /**
-     * 假设一个黑盒结构
-     * 功能:
-     * 记录 0~0，0~1，0~2 ... 0~i-1的异或和
-     * 全局变量xor代表0~i的异或和
-     * <p>
-     * 假设返回0~2 ^ xor 最大，则代表3~i的子数组为最大异或和
-     */
-    public static int solutionByTrie(int[] arr) {
-        System.out.println();
-        return 0;
-    }
-
-
-    private static class Node {
-        private int[] next;
-    }
-
-    private static class Trie {
-        private Node head;
-
-        public Trie() {
-            this.head = new Node();
-        }
-
-        public void add(int num) {
-
-        }
-
-
     }
 
     public static void main(String[] args) {
