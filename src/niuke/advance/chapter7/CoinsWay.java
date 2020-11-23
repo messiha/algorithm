@@ -1,0 +1,56 @@
+/*
+ * All rights Reserved, Designed By baowei
+ *
+ * 注意：本内容仅限于内部传阅，禁止外泄以及用于其他的商业目的
+ */
+package src.niuke.advance.chapter7;
+
+/**
+ * @author yan.zhang
+ * @date 2020/11/22 21:06
+ */
+
+/**
+ * 给定数组arr，arr中所有的值都为正数且不重复，每个值代表一种面值的货币。每种面值的货币可以使用任意张。
+ * 再给定一个整数aim代表要找的钱数，求换钱有多少种方法。
+ * 举例：
+ * arr = [5,10,25,1] aim=0
+ * 组成0元的方法有1种，即所有面值货币都不使用。所以返回1
+ * arr = [3,5] aim=2
+ * 任何方法都无法组成2元，所以返回0
+ */
+public class CoinsWay {
+    public static void main(String[] args) {
+        int[] arr = new int[]{5, 10, 25, 1};
+        int aim = 15;
+        System.out.println(coins1(arr, aim));
+    }
+
+    private static int coins1(int[] arr, int aim) {
+        if (null == arr || arr.length == 0 || aim < 0) {
+            return 0;
+        }
+        return process1(arr, 0, aim);
+    }
+
+    /**
+     * @param arr
+     * @param index 可以任意使用index及其之后的所有钱币
+     * @param aim
+     * @return
+     */
+    private static int process1(int[] arr, int index, int aim) {
+        int res = 0;
+
+        if (arr.length == index) {
+            res = aim == 0 ? 1 : 0;
+        } else {
+            for (int i = 0; arr[index] * i <= aim; i++) {
+                res += process1(arr, index + 1, aim - arr[index] * i);
+            }
+        }
+
+        return res;
+    }
+
+}
