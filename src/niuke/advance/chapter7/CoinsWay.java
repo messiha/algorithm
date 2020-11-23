@@ -10,6 +10,8 @@ package src.niuke.advance.chapter7;
  * @date 2020/11/22 21:06
  */
 
+import java.util.HashMap;
+
 /**
  * 给定数组arr，arr中所有的值都为正数且不重复，每个值代表一种面值的货币。每种面值的货币可以使用任意张。
  * 再给定一个整数aim代表要找的钱数，求换钱有多少种方法。
@@ -24,6 +26,7 @@ public class CoinsWay {
         int[] arr = new int[]{5, 10, 25, 1};
         int aim = 15;
         System.out.println(coins1(arr, aim));
+        System.out.println(coins2(arr, aim));
     }
 
     private static int coins1(int[] arr, int aim) {
@@ -31,6 +34,13 @@ public class CoinsWay {
             return 0;
         }
         return process1(arr, 0, aim);
+    }
+
+    private static int coins2(int[] arr, int aim) {
+        if (null == arr || arr.length == 0 || aim < 0) {
+            return 0;
+        }
+        return processByDp(arr, 0, aim);
     }
 
     /**
@@ -52,5 +62,41 @@ public class CoinsWay {
 
         return res;
     }
+
+
+    /**
+     * DP思路：
+     * 当子问题重index和aim确定，则整个问题的结果一定确定。无后效性问题
+     */
+    private static int processByDp(int[] arr, int index, int aim) {
+        int res = 0;
+
+        if (arr.length == index) {
+            res = aim == 0 ? 1 : 0;
+        } else {
+            for (int i = 0; arr[index] * i <= aim; i++) {
+                //生成下一次递归的key
+                int nextAim = aim - arr[index] * i;
+                String key = String.valueOf(index + 1).concat("_").concat(String.valueOf(nextAim));
+
+                if (map.containsKey(key)) {
+                    res += map.get(key);
+                } else {
+                    //map中没有记录，递归计算
+                    res += process1(arr, index + 1, aim - arr[index] * i);
+                }
+
+
+            }
+        }
+
+        //返回上层前，将当前"层"(当前index和aim下的结果) 计算后的结果保存在map，避免大量重复计算
+        map.put(String.valueOf(index).concat("_").concat(String.valueOf(aim)), res);
+        return res;
+    }
+
+    //key:index_aim value:参数为index_aim下的返回值
+    private static HashMap<String, Integer> map = new HashMap<>();
+
 
 }
