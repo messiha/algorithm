@@ -40,15 +40,47 @@ public class CoinsWay {
         if (null == arr || arr.length == 0 || aim < 0) {
             return 0;
         }
+        return processByCache(arr, 0, aim);
+    }
+
+    private static int coins3(int[] arr, int aim) {
+        if (null == arr || arr.length == 0 || aim < 0) {
+            return 0;
+        }
         return processByDp(arr, 0, aim);
     }
 
+
     /**
+     * 配合DP图理解
+     *
      * @param arr
-     * @param index 可以任意使用index及其之后的所有钱币
+     * @param index
      * @param aim
      * @return
      */
+    private static int processByDp(int[] arr, int index, int aim) {
+        int[][] dp = new int[arr.length][aim + 1];
+
+        //初始化，对于暴力递归的baseCase，当arr.length == index时可以不依赖任何"位置"得到解
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 1;
+        }
+
+        //初始化
+        for (int j = 1; arr[0] * j <= aim; j++) {
+            dp[0][arr[0] * j] = 1;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+
+        }
+
+
+        return dp[arr.length - 1][aim];
+    }
+
+
     private static int process1(int[] arr, int index, int aim) {
         int res = 0;
 
@@ -65,10 +97,10 @@ public class CoinsWay {
 
 
     /**
-     * DP思路：
+     * 缓存思路：
      * 当子问题重index和aim确定，则整个问题的结果一定确定。无后效性问题
      */
-    private static int processByDp(int[] arr, int index, int aim) {
+    private static int processByCache(int[] arr, int index, int aim) {
         int res = 0;
 
         if (arr.length == index) {
