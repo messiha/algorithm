@@ -27,6 +27,7 @@ public class CoinsWay {
         int aim = 15;
         System.out.println(coins1(arr, aim));
         System.out.println(coins2(arr, aim));
+        System.out.println(coins3(arr, aim));
     }
 
     private static int coins1(int[] arr, int aim) {
@@ -53,6 +54,10 @@ public class CoinsWay {
 
     /**
      * 配合DP图理解
+     * 推理步骤：
+     * 1.找出最终目标，本例中processByDp(arr, 0, aim);  0~aim位置即为最终目标
+     * 2.找出不依赖其他"位置"即可判断结果的位置，即baseCase
+     * 3.推出位置依赖关系
      *
      * @param arr
      * @param index
@@ -72,11 +77,14 @@ public class CoinsWay {
             dp[0][arr[0] * j] = 1;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-
+        //计算dp图，从dp图的 1,1位置计算
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 1; j <= aim; j++) {
+                dp[i][j] = dp[i - 1][j];
+                dp[i][j] += j - arr[i] >= 0 ? dp[i][j - arr[i]] : 0;
+            }
         }
-
-
+        //dp[arr.length - 1][aim] 最总目标坐标值
         return dp[arr.length - 1][aim];
     }
 
@@ -97,7 +105,7 @@ public class CoinsWay {
 
 
     /**
-     * 缓存思路：
+     * 缓存思路(记忆化搜索)：
      * 当子问题重index和aim确定，则整个问题的结果一定确定。无后效性问题
      */
     private static int processByCache(int[] arr, int index, int aim) {
