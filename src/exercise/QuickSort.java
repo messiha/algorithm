@@ -28,7 +28,7 @@ class QuickSort {
 
     private static void process(int[] arr, int l, int r) {
         if (l < r) {
-            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            swap(arr, r, l + (int) (Math.random() * (r - l + 1)));
             int[] p = partition(arr, l, r);
             process(arr, l, p[0] - 1);
             process(arr, p[1] + 1, r);
@@ -38,6 +38,7 @@ class QuickSort {
     private static int[] partition(int[] arr, int l, int r) {
         int less = l - 1;
         int more = r;
+
         while (l < more) {
             if (arr[l] < arr[r]) {
                 swap(arr, l++, ++less);
@@ -47,6 +48,7 @@ class QuickSort {
                 l++;
             }
         }
+
         swap(arr, r, more);
         return new int[]{less + 1, more};
     }
