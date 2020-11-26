@@ -55,5 +55,4 @@ public class ReverseList {
         head.next = null;
         return newHead;
     }
-
 }

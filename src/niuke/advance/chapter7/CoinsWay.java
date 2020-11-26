@@ -23,8 +23,10 @@ import java.util.HashMap;
  */
 public class CoinsWay {
     public static void main(String[] args) {
-        int[] arr = new int[]{5, 10, 25, 1};
-        int aim = 15;
+        int[] arr = new int[]{5, 3, 2};
+//        int[] arr = new int[]{5, 10, 25, 1};
+//        int aim = 15;
+        int aim = 10;
         System.out.println(coins1(arr, aim));
         System.out.println(coins2(arr, aim));
         System.out.println(coins3(arr, aim));
@@ -88,6 +90,30 @@ public class CoinsWay {
         return dp[arr.length - 1][aim];
     }
 
+    /**
+     * dp表换个方式
+     */
+    private static int processByDp2(int[] arr, int index, int aim) {
+        int[][] dp = new int[arr.length][aim + 1];
+
+        for (int i = 0; i < arr.length; i++) {
+            dp[i][0] = 1;
+        }
+
+        for (int j = 0; arr[arr.length - 1] * j <= aim; j++) {
+            dp[arr.length - 1][j * arr[arr.length - 1]] = 1;
+        }
+
+        for (int i = arr.length - 2; i >= 0; i--) {
+            for (int j = 0; j <= aim; j++) {
+                dp[i][j] = dp[i + 1][j];
+                dp[i][j] += j - arr[i] >= 0 ? dp[i][j - arr[i]] : 0;
+            }
+        }
+
+        return dp[0][aim];
+    }
+
 
     private static int process1(int[] arr, int index, int aim) {
         int res = 0;
@@ -125,8 +151,6 @@ public class CoinsWay {
                     //map中没有记录，递归计算
                     res += process1(arr, index + 1, aim - arr[index] * i);
                 }
-
-
             }
         }
 

@@ -20,20 +20,18 @@ class QuickSort {
     }
 
     private static void quickSort(int[] arr) {
-        if (arr == null || arr.length == 1) {
+        if (arr == null || arr.length == 0) {
             return;
         }
-        quickSort(arr, 0, arr.length - 1);
+        process(arr, 0, arr.length - 1);
     }
 
-    private static void quickSort(int[] arr, int L, int R) {
-        if (L < R) {
-            //R - L + 1 >1 -> [0,1) * (1,x) -> L + Math.random() * (R - L + 1) 大于0,小于R
-            //随机值 Math.random() = [0,1) => L + Math.random() * (R - L + 1) = [L,R]
-            swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
-            int[] p = partition(arr, L, R);
-            quickSort(arr, L, p[0] - 1);
-            quickSort(arr, p[1] + 1, R);
+    private static void process(int[] arr, int l, int r) {
+        if (l < r) {
+            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            int[] p = partition(arr, l, r);
+            process(arr, l, p[0] - 1);
+            process(arr, p[1] + 1, r);
         }
     }
 
@@ -42,16 +40,17 @@ class QuickSort {
         int more = r;
         while (l < more) {
             if (arr[l] < arr[r]) {
-                swap(arr, ++less, l++);
+                swap(arr, l++, ++less);
             } else if (arr[l] > arr[r]) {
-                swap(arr, --more, l);
+                swap(arr, l, --more);
             } else {
                 l++;
             }
         }
         swap(arr, r, more);
-        return new int[]{arr[less + 1], arr[more]};
+        return new int[]{less + 1, more};
     }
+
 
     /**
      * 交换位置
