@@ -5,7 +5,9 @@
  */
 package src.exercise;
 
-import java.util.Arrays;
+import src.datastruct.TreeNode;
+
+import java.util.Stack;
 
 /**
  * @author yan.zhang
@@ -14,52 +16,71 @@ import java.util.Arrays;
 public class Practice5 {
 
     public static void main(String[] args) {
-        int[] arr = {7, 6, 5, 4, 3, 2, 1};
-        quickSort(arr);
-        System.out.println(Arrays.toString(arr));
+        TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
+        postOrder(head);
     }
 
-    private static void quickSort(int[] arr) {
-        if (arr == null || arr.length == 0) {
+    private static void postOrder(TreeNode head) {
+        if (head == null) {
             return;
         }
-        quickSort(arr, 0, arr.length - 1);
-    }
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
 
-    private static void quickSort(int[] arr, int L, int R) {
-        if (L < R) {
-            swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
-            int[] res = partition(arr, L, R);
-            quickSort(arr, L, res[0] - 1);
-            quickSort(arr, res[1] + 1, R);
+        s1.push(head);
+        while (!s1.isEmpty()) {
+            head = s1.pop();
+            s2.push(head);
+
+            if (head.left != null) {
+                s1.push(head.left);
+            }
+            if (head.right != null) {
+                s1.push(head.right);
+            }
+
         }
 
+        while (!s2.isEmpty()) {
+            System.out.println(s2.pop().getValue());
+        }
     }
 
-    private static int[] partition(int[] arr, int L, int R) {
-        int less = L - 1;
-        int more = R;
-        int index = L;
-        while (index < more) {
-            if (arr[index] < arr[R]) {
-                swap(arr, ++less, index++);
-            } else if (arr[index] > arr[R]) {
-                swap(arr, --more, index);
-            } else {
-                index++;
+    private static void preOrder(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            System.out.println(cur.getValue());
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
             }
         }
-
-        swap(arr, R, more);
-        return new int[]{less + 1, more};
     }
 
+    private static void inOrder(TreeNode head) {
+        if (head == null) {
+            return;
+        }
 
-    //交换i,j
-    public static void swap(int[] arr, int i, int j) {
-        int temp;
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || head != null) {
+            if (head != null) {
+                stack.push(head);
+                head = head.left;
+            } else {
+                head = stack.pop();
+                System.out.println(head.getValue());
+                head = head.right;
+            }
+        }
     }
+
 }
