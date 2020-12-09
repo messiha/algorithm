@@ -25,7 +25,7 @@ import java.util.Queue;
 public class CompleteBinaryTree {
     public static void main(String[] args) {
         TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
-        isCBT(head);
+        System.out.println(isCBT(head));
     }
 
     private static boolean isCBT(TreeNode head) {
