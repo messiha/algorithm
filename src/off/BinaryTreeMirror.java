@@ -15,8 +15,19 @@ public class BinaryTreeMirror {
      */
     public static void main(String[] args) {
         TreeNode head = new TreeNode(8, new TreeNode(6, new TreeNode(5, null, null), new TreeNode(7, null, null)), new TreeNode(10, new TreeNode(9, null, null), new TreeNode(11, null, null)));
-        mirrorByQueue(head);
+//        mirrorByQueue(head);
+        mirrorByRecur(head);
         preOrder(head);
+    }
+
+    private static void mirrorByRecur(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+
+        mirrorByRecur(head.left);
+        mirrorByRecur(head.right);
+        swap(head, head.left, head.right);
     }
 
     private static void mirrorByQueue(TreeNode root) {
