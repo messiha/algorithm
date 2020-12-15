@@ -15,12 +15,11 @@ public class BinaryTreeMirror {
      */
     public static void main(String[] args) {
         TreeNode head = new TreeNode(8, new TreeNode(6, new TreeNode(5, null, null), new TreeNode(7, null, null)), new TreeNode(10, new TreeNode(9, null, null), new TreeNode(11, null, null)));
-        mirror(head);
-
+        mirrorByQueue(head);
         preOrder(head);
     }
 
-    private static void mirror(TreeNode root) {
+    private static void mirrorByQueue(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -29,19 +28,18 @@ public class BinaryTreeMirror {
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode cur = queue.poll();
-                //swap
-                swap(cur, cur.left, cur.right);
 
-                if (cur.left != null) {
-                    queue.offer(cur.left);
-                }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
-                }
+            TreeNode cur = queue.poll();
+            //swap
+            swap(cur, cur.left, cur.right);
+
+            if (cur.left != null) {
+                queue.offer(cur.left);
             }
+            if (cur.right != null) {
+                queue.offer(cur.right);
+            }
+
         }
 
     }
