@@ -43,7 +43,7 @@ class QuickSort {
             if (arr[l] < arr[r]) {
                 swap(arr, l++, ++less);
             } else if (arr[l] > arr[r]) {
-                swap(arr, l, --more);
+                swap(arr, --more, l);
             } else {
                 l++;
             }
