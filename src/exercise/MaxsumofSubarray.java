@@ -25,6 +25,7 @@ public class MaxsumofSubarray {
     /**
      * 以0位置结尾的最大累加和
      * 以1位置结尾的最大累加和
+     * 该方法错误 后续考虑递归...
      */
     private static int max = 0;
 
