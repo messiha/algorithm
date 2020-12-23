@@ -18,8 +18,8 @@ public class MergeArray {
         A[1] = 4;
         A[2] = 8;
         int[] B = new int[]{2, 7, 10};
-//        merge(A, 3, B, 3);
-        merge2(A, 3, B, 3);
+        merge(A, 3, B, 3);
+//      merge2(A, 3, B, 3);
 
         System.out.println(Arrays.toString(A));
     }
@@ -45,23 +45,27 @@ public class MergeArray {
         }
     }
 
+    /**
+     * 双指针，从尾部遍历，不需要额外空间
+     *
+     * @param A
+     * @param m
+     * @param B
+     * @param n
+     */
     public static void merge(int A[], int m, int B[], int n) {
-        int ai = 0;
-        int bi = 0;
+        int ai = m - 1;
+        int bi = n - 1;
+        int p = m + n - 1;
 
-        while (ai < A.length && bi < n) {
-            if (A[ai] <= B[bi]) {
-                swap(A, B, ++ai, bi);
-            } else if (A[ai] > B[bi]) {
-                swap(A, B, ai, bi);
-            }
+        while (ai >= 0 && bi >= 0) {
+            A[p--] = A[ai] < B[bi] ? B[bi--] : A[ai--];
+        }
+        //若B没有走完
+        while (bi >= 0) {
+            A[p--] = B[bi--];
         }
 
     }
 
-    private static void swap(int[] a, int[] b, int ai, int bi) {
-        int tmp = a[ai];
-        a[ai] = b[bi];
-        b[bi] = tmp;
-    }
 }
