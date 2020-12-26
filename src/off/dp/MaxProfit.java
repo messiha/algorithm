@@ -13,11 +13,12 @@ public class MaxProfit {
      */
     public static void main(String[] args) {
         int arr[] = new int[]{1, 4, 2};
-//        solution(arr);
         System.out.println(greed(arr));
+        System.out.println(solution2(arr));
     }
 
     private static int greed(int[] arr) {
+        if (arr.length < 2) return 0;
         int min = arr[0];
         int profile = 0;
         for (int i = 1; i < arr.length; i++) {
@@ -38,6 +39,18 @@ public class MaxProfit {
 
 
         }
+    }
+
+
+    private static int solution2(int[] prices) {
+        if (prices.length < 2) return 0;
+        int min = prices[0];
+        int res = 0;
+        for (int i = 1; i < prices.length; i++) {
+            min = Math.min(prices[i], min);
+            res = Math.max(res, prices[i] - min);
+        }
+        return res;
     }
 
 }
