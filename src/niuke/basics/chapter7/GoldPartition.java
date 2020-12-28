@@ -26,6 +26,9 @@ public class GoldPartition {
      * 思路：
      * 小根堆，大根堆
      * 堆适合用来解决贪心问题，从样本中选择最优数据
+     * 贪心思路：每次切割都花费最少的代价，则最终代价一定为最小。
+     * 优先级队列，对于切分后的最终结果，弹出最小的两个，相加和，即为第一次切割的花费。
+     * 记录第一次的花费，将第一次切割的花费再次加入小根堆，下次继续弹出两个最小的....直到优先级队列中数字个数少于2停止
      */
     public static int lessMoney(int[] arr) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -35,7 +38,8 @@ public class GoldPartition {
         int sum = 0;
         int cur = 0;
         while (pq.size() > 1) {
-            cur = pq.poll() + pq.poll();//弹出最小的两个值
+            //弹出最小的两个值
+            cur = pq.poll() + pq.poll();
             sum += cur;
             pq.add(cur);
         }

@@ -29,7 +29,9 @@ public class MaximumIncome {
             nodes[i] = new Node(cost[i], profit[i]);
         }
 
-        PriorityQueue<Node> minCostQ = new PriorityQueue<>(new MinCostComparator()); //小根堆
+        //对花费建立小根堆
+        PriorityQueue<Node> minCostQ = new PriorityQueue<>(new MinCostComparator());
+        //收益构建大根堆
         PriorityQueue<Node> maxProfitQ = new PriorityQueue<>(new MaxProfitComparator());
 
         //加入小根堆
@@ -45,7 +47,8 @@ public class MaximumIncome {
             if (maxProfitQ.isEmpty()) {
                 return w;
             }
-            w += maxProfitQ.poll().p;
+            Node node = maxProfitQ.poll();
+            w += node.p - node.c;
         }
         return w;
     }
@@ -75,7 +78,8 @@ public class MaximumIncome {
     }
 
     public static void main(String[] args) {
-        int[] c = {};
-        int[] p = {};
+        int[] cost = new int[]{100, 200, 300, 400};
+        int[] profile = new int[]{110, 220, 330, 440};
+        System.out.println(findMaximizedCapital(3, 300, profile, cost));
     }
 }
