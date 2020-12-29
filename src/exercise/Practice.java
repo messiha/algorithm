@@ -19,49 +19,53 @@ import java.util.Arrays;
 public class Practice {
 
     public static void main(String[] args) {
-        int[] arr = {5, 4, 3, 2, 6, 7, 8, 0, 0, 1};
-        buildHeap(arr);
+        int[] arr = {5, 4, 3, 2, 6, 7, 8, 0, 0, 1, -9, 17};
+        heapSort(arr);
         System.out.println(Arrays.toString(arr));
 
     }
 
-    private static void buildHeap(int[] arr) {
+    private static void heapSort(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+
         for (int i = 0; i < arr.length; i++) {
-            //构建大根堆
             heapInsert(arr, i);
         }
-    }
 
-    private static void heapInsert(int[] arr, int i) {
-        while (arr[i] > arr[(i - 1) / 2]) {
-            swap(arr, i, (i - 1) / 2);
-            i = (i - 1) / 2;
+        int heapSize = arr.length;
+        swap(arr, --heapSize, 0);
+
+        while (heapSize > 0) {
+            heapify(arr, heapSize, 0);
+            swap(arr, 0, --heapSize);
         }
     }
 
-    /**
-     * 调整大根堆
-     *
-     * @param arr
-     * @param index    数组中发生变化的下标
-     * @param heapSize
-     */
-    private static void heapify(int[] arr, int index, int heapSize) {
+    private static void heapify(int[] arr, int heapSize, int index) {
         int left = 2 * index + 1;
         while (left < heapSize) {
-            //左子节点和右子节点比较出最大
-            int largest = left + 1 < heapSize && arr[left] > arr[left + 1] ? left : left + 1;
-            largest = arr[largest] > arr[index] ? largest : index;
+            int largest = left + 1 < heapSize && arr[left] < arr[left + 1] ? left + 1 : left;
+            largest = arr[largest] < arr[index] ? index : largest;
+
             if (largest == index) {
-                //head大于左右子节点
                 break;
             }
-            swap(arr, left, index);
-            index = largest;
-            left = 2 * index - 1;
-        }
 
+            swap(arr, index, largest);
+            index = largest;
+            left = 2 * index + 1;
+        }
     }
+
+    private static void heapInsert(int[] arr, int index) {
+        while (arr[(index - 1) / 2] < arr[index]) {
+            swap(arr, (index - 1) / 2, index);
+            index = (index - 1) / 2;
+        }
+    }
+
 
     private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
