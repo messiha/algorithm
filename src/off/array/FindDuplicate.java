@@ -1,5 +1,8 @@
 package src.off.array;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author yan.zhang
  * @date 2021/1/7 16:12
@@ -18,8 +21,25 @@ public class FindDuplicate {
      */
     public static void main(String[] args) {
         int[] arr = new int[]{4, 4, 1, 0, 2, 5, 3};
-        int duplicates = findDuplicates(arr);
-        System.out.println(duplicates);
+        System.out.println(findDuplicates(arr));
+        System.out.println(findDuplicatesByMap(arr));
+    }
+
+    private static int findDuplicatesByMap(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>(16);
+        int duplicate = -1;
+
+        if (arr == null || arr.length == 0) {
+            return duplicate;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(arr[i])) {
+                return arr[i];
+            }
+            map.put(arr[i], i);
+        }
+        return duplicate;
     }
 
     private static int findDuplicates(int[] arr) {
