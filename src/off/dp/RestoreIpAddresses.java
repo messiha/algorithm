@@ -12,13 +12,12 @@ import java.util.ArrayList;
  * @date 2021/1/10 16:00
  */
 public class RestoreIpAddresses {
-    /**
-     * 结果错误，后续考虑
-     *
-     * @param args
-     */
+
     public static void main(String[] args) {
-        dfs("19216801", 0);
+        //[1.9.216.801, 1.92.16.801, 1.921.6.801, 1.921.680.1, 19.2.16.801, 19.21.6.801,
+        // 19.21.680.1, 19.216.80.1, 192.1.6.801, 192.1.680.1, 192.16.80.1, 192.168.0.1]
+//        dfs("19216801", 0);
+        dfs("25525522135", 0);
 //        dfs("0000", 0);
         System.out.println(RES.toString());
     }
