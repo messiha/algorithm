@@ -16,7 +16,7 @@ public class FullRank {
      * 給出ABC三个字母。输出全排列。要求第一个字母如果是A,第二个字母可选择只有BC
      */
     public static void main(String[] args) {
-        char[] chars = new char[]{'a', 'b', 'c'};
+        char[] chars = new char[]{'a', 'b', 'c', 'd'};
         export(chars);
     }
 
@@ -29,7 +29,8 @@ public class FullRank {
         //used代表，used数组中i下标对应的char是否被使用过
         boolean[] used = new boolean[chars.length];
 
-        dfs(chars, used, 0, new Stack<>());
+//        dfs(chars, used, 0, new Stack<>());
+        dfs(chars);
     }
 
 
@@ -53,6 +54,29 @@ public class FullRank {
                 res.pop();
             }
 
+        }
+    }
+
+    /**
+     * 优化改进dfs方法签名
+     */
+    private static final Stack<Character> STACK = new Stack<>();
+
+    private static void dfs(char[] chars) {
+        if (STACK.size() == chars.length) {
+            System.out.println(STACK.toString());
+            return;
+        }
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] != ' ') {
+                char c = chars[i];
+                STACK.add(c);
+                chars[i] = ' ';
+                dfs(chars);
+                chars[i] = c;
+                STACK.pop();
+            }
         }
     }
 
