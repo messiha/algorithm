@@ -17,6 +17,7 @@ public class LegalIp {
      */
     public static void main(String[] args) {
         String ip = "19216801";
+//        String ip = "1111";
         find(ip);
     }
 
@@ -33,10 +34,10 @@ public class LegalIp {
      * @param ip
      */
     private static void find(String ip) {
-//        process(ip, -1, 1);
         dfs(ip, new ArrayList<>(), 0);
         System.out.println(RES.toString());
     }
+
 
     private static final ArrayList<String> RES = new ArrayList<>();
 
