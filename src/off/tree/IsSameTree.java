@@ -18,9 +18,9 @@ public class IsSameTree {
      * 如果两颗树结构上相同，并且节点具有相同的值，则认为相同。
      */
     public static void main(String[] args) {
-        TreeNode p = new TreeNode(1, new TreeNode(2, null, null), new TreeNode(3, null, null));
+        TreeNode p = new TreeNode(2, new TreeNode(2, null, null), new TreeNode(3, null, null));
         TreeNode q = new TreeNode(1, new TreeNode(2, null, null), new TreeNode(3, null, null));
-        isSameTree(p, q);
+        System.out.println(isSameTree(p, q));
     }
 
     private static boolean isSameTree(TreeNode p, TreeNode q) {
@@ -33,7 +33,11 @@ public class IsSameTree {
             return false;
         }
 
-        return false;
+        return p.value.equals(q.value) &&
+                isSameTree(p.left, q.left) &&
+                isSameTree(p.right, q.right);
+
     }
+
 
 }
