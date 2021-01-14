@@ -32,6 +32,7 @@ public class DetectCycle {
             return null;
         }
 
+        //首先需要各走一步，使得fast!=quick 否则 fast == quick 导致  while (fast != slow) {} 错误
         fast = fast.next.next;
         slow = slow.next;
 

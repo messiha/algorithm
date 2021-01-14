@@ -24,9 +24,9 @@ public class ReverseList {
         n1.next = n2;
         n2.next = n3;
 
-//        SingleListNode head1 = reverseByRecursion(n1);
+//        ListNode head1 = reverseByRecursion(n1);
         ListNode head2 = reverseByPoint(n1);
-        System.out.println(head2.next.next.val);
+        System.out.println(head2.val);
     }
 
     private static ListNode reverseByPoint(ListNode head) {
