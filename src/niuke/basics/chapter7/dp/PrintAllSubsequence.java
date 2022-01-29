@@ -10,6 +10,10 @@ package src.niuke.basics.chapter7.dp;
  * @date 2020/1/27 15:01
  */
 public class PrintAllSubsequence {
+    /**
+     * 打印所有子序列
+     * 子序列：字符相对位置保持不变，比如 ac是子序列，ca不是子序列
+     */
     public static void main(String[] args) {
         String str = "abc";
         printAllSub(str.toCharArray(), 0, "");
@@ -28,5 +32,4 @@ public class PrintAllSubsequence {
         printAllSub(chars, i + 1, res); //不包含当前字符决策
         printAllSub(chars, i + 1, res + chars[i]); //包含当前字符决策
     }
-
 }

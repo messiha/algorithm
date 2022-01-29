@@ -27,6 +27,7 @@ public class ThreeSum {
     }
 
     private static List<List<Integer>> solution(int[] nums) {
+        //[-4,-1,-1,0,1,2]
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
 

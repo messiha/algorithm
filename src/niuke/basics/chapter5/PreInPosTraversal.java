@@ -15,12 +15,20 @@ import java.util.Stack;
  */
 public class PreInPosTraversal {
     public static void main(String[] args) {
+        /**
+         *       1
+         *      / \
+         *     2   3
+         *   / \  / \
+         *  4  5 6  7
+         *
+         */
         TreeNode head = new TreeNode(1, new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null)), new TreeNode(3, new TreeNode(6, null, null), new TreeNode(7, null, null)));
-//        preOrderRecur(head);
-//        preOrderUnRecur(head);
-//        inOrderUnRecur(head);
-//        aftOrderUnRecur(head);
-        inOrderUnRecur(head);
+        preOrderRecur(head);
+//       preOrderUnRecur(head);
+//       inOrderUnRecur(head);
+//       aftOrderUnRecur(head);
+//       inOrderUnRecur(head);
     }
 
 
