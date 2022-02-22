@@ -25,7 +25,7 @@ public class FindKth {
 
     /**
      * 牛客网标准解
-     * 类比快排，但是在每一次partition之后使用二分查找，减少一般的排序
+     * 类比快排，但是在每一次partition之后使用二分查找，减少一半的排序
      */
     private static int findKth(int[] arr, int n, int K) {
         return findK(arr, 0, n - 1, K);

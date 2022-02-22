@@ -21,6 +21,7 @@ public class BlondFilter {
     }
 
     private static void blondFilter() {
+        //long 8字节 64bit
         /*long[] arr = new long[1000]; //1000*64=64000   64000bit大小
 
         long target = 30000;

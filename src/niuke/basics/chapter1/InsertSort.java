@@ -7,19 +7,6 @@ package src.niuke.basics.chapter1;
  * 稳定性：稳定
  */
 public class InsertSort {
-    public static void insertSort3(int[] arr) {
-        if (null == arr || arr.length < 2) {
-            return;
-        }
-        for (int i = 1; i != arr.length; i++) {
-            for (int j = i; j != 0; j--) {
-                if (arr[j - 1] > arr[j]) {
-                    swap(arr, j, j - 1);
-                }
-            }
-        }
-    }
-
 
     //方式一
     public static void insertSort1(int[] arr) {
@@ -53,15 +40,14 @@ public class InsertSort {
 
     //交换i,j
     public static void swap(int[] arr, int i, int j) {
-        int temp = 0;
-        temp = arr[i];
+        int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
     public static void main(String[] args) {
         int[] arr = {3, 2, 5, 1, 9, 0, 4, 6};
-        insertSort3(arr);
+        insertSort1(arr);
         for (int item : arr) {
             System.out.print(item);
         }

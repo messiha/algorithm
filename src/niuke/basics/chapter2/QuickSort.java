@@ -16,6 +16,8 @@ public class QuickSort {
      * 改进后快排
      * 类比荷兰国旗问题
      * 额外时间复杂度O(1)
+     * 总体时间复杂度:N*logN
+     * 最差情况时间复杂度:N^2 
      */
     public static void main(String[] args) {
         int[] arr = {4, 5, 6, 7, 8, 1, 2, 3};
@@ -47,6 +49,7 @@ public class QuickSort {
     /**
      * 在L ~ R范围上 将小于target数字放在左，等于target数字放在中间，大于target数字放在右侧
      * 返回等于target部分下标起始位置和结束位置组成的数组(即等于区域下标起始-结束位置组成的数组)
+     * O(N)的时间复杂度
      */
     private static int[] partition(int[] arr, int l, int r) {
         //定义less指针 代表小于target部分起始下标
