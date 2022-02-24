@@ -15,11 +15,18 @@ public class MergeIntervals {
      * https://leetcode-cn.com/problems/merge-intervals/
      */
     public static void main(String[] args) {
-//        int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-        int[][] intervals = {{1, 4}, {0, 2}, {3, 5}};
+        int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+//        int[][] intervals = {{1, 4}, {0, 2}, {3, 5}};
 //        int[][] intervals = {{1, 3}};
 //        int[][] intervals = {{1, 4}, {0, 0}};
         int[][] result = merge(intervals);
+        print(result);
+    }
+
+    private static void print(int[][] result) {
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(Arrays.toString(result[i]));
+        }
     }
 
     private static int[][] merge(int[][] intervals) {
