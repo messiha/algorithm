@@ -13,9 +13,43 @@ public class LongestPalindrome {
      * 3.s = "a"      => "a"
      */
     public static void main(String[] args) {
-        System.out.println(isLongestPalindrome("ababa"));
-//        System.out.println(isLongestPalindrome("cbbd"));
+        System.out.println(isLongestPalindrome("aabaa"));
+//      System.out.println(isLongestPalindrome("cbbd"));
     }
+
+    /**
+     * 暴力解法
+     */
+    private static String isLongestPalindromeByBasic(String s) {
+        int len = s.length();
+        if (len < 2) {
+            return s;
+        }
+        int begin = 0, maxLen = 1;
+        char[] charArray = s.toCharArray();
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (j-i+1>maxLen && isValid(charArray, i, j)) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+
+        return s.substring(begin, maxLen);
+    }
+
+    private static boolean isValid(char[] charArray, int left, int right) {
+        while (left < right) {
+            if (charArray[left] != charArray[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
 
     /**
      * 动态规划法
