@@ -10,8 +10,8 @@ import src.datastruct.ListNode;
 public class IntersectionOfTwoList {
     /**
      * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/comments/
+     * 链表相交
      */
-
     public static void main(String[] args) {
         ListNode h1 = new ListNode(3);
         ListNode h2 = new ListNode(2);
