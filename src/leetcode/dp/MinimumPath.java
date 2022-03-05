@@ -38,6 +38,7 @@ public class MinimumPath {
         return help[help.length - 1][help[0].length - 1];
     }
 
+    //在grid上做填表修改
     private static int minPathSum_02(int[][] grid) {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {

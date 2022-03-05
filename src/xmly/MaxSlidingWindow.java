@@ -14,7 +14,7 @@ public class MaxSlidingWindow {
      * [3,3,5,5,6,7]
      */
     public static void main(String[] args) {
-       int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
         int[] ints = MaxSlidingWindow.solution(nums, 3);
         System.out.println(Arrays.toString(ints));
     }
@@ -29,7 +29,7 @@ public class MaxSlidingWindow {
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             //保证队列是由大到小的顺序，对每个进入队列的值，和队列尾值比较,如果大于，剔除队列尾
-            while (!list.isEmpty() && list.peekLast() <= arr[i]) {
+            while (!list.isEmpty() && arr[list.peekLast()] <= arr[i]) {
                 list.pollLast();
             }
             //队尾进
