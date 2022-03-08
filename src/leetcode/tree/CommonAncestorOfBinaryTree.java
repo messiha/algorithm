@@ -13,11 +13,13 @@ public class CommonAncestorOfBinaryTree {
      * 二叉树的最近公共祖先
      */
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(0);
-        TreeNode p = new TreeNode(0);
-        TreeNode q = new TreeNode(0);
+        TreeNode root = new TreeNode(1);
+        TreeNode p = new TreeNode(5);
+        TreeNode q = new TreeNode(6);
+        root.left = new TreeNode(2, new TreeNode(4), p);
+        root.right = new TreeNode(3, q, new TreeNode(7));
 //        lowestCommonAncestor(root, p, q);
-        lowestCommonAncestor_02(root, p, q);
+        System.out.println(lowestCommonAncestor(root, p, q).value);
     }
 
     /**
