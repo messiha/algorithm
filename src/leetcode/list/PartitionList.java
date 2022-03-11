@@ -23,9 +23,9 @@ public class PartitionList {
     }
 
     private static ListNode partition(ListNode head, int x) {
-        ListNode dummy1 =  new ListNode(-1,head);
+        ListNode dummy1 = new ListNode(-1, head);
         //后半部分
-        ListNode dummy2 =  new ListNode(-1,head);
+        ListNode dummy2 = new ListNode(-1, head);
         ListNode p1 = dummy1;
         ListNode p2 = dummy2;
 
@@ -39,7 +39,7 @@ public class PartitionList {
             }
             head = head.next;
         }
-
+        //如果没有这步操作， p1.next = dummy2.next;会形成环
         if (p1.next == null) {
             p2.next = null;
         }
@@ -47,7 +47,39 @@ public class PartitionList {
             p1.next = null;
         }
         p1.next = dummy2.next;
+        return dummy1.next;
+    }
 
+
+    /**
+     * 推荐方式
+     *
+     * @param head
+     * @param x
+     * @return
+     */
+    private static ListNode partition_0(ListNode head, int x) {
+        //虚拟节点不关联head
+        ListNode dummy1 = new ListNode(-1);
+        //后半部分
+        ListNode dummy2 = new ListNode(-1);
+        ListNode p1 = dummy1;
+        ListNode p2 = dummy2;
+
+        while (null != head) {
+            if (head.val < x) {
+                p1.next = head;
+                head = head.next;
+                p1 = p1.next;
+                p1.next = null;
+            } else {
+                p2.next = head;
+                head = head.next;
+                p2 = p2.next;
+                p2.next = null;
+            }
+        }
+        p1.next = dummy2.next;
         return dummy1.next;
     }
 }
