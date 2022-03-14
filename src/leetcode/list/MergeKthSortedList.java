@@ -32,8 +32,8 @@ public class MergeKthSortedList {
         lists[2] = l3;
 
 //        mergeByPriorityQueue(lists);
-        merge_02(lists);
-//        mergeByDivide(lists, 0, lists.length - 1);
+//        merge_02(lists);
+        mergeByDivide(lists, 0, lists.length - 1);
     }
 
     /**
@@ -83,15 +83,15 @@ public class MergeKthSortedList {
         if (null == lists || lists.length == 0) {
             return null;
         }
-        return merge(lists, left, right);
+        return mergeByDivide0(lists, left, right);
     }
 
-    private static ListNode merge(ListNode[] lists, int left, int right) {
+    private static ListNode mergeByDivide0(ListNode[] lists, int left, int right) {
         if (left == right) {
             return lists[left];
         }
         int mid = left + ((right - left) >> 1);
-        return merge(mergeByDivide(lists, left, mid), mergeByDivide(lists, mid + 1, right));
+        return merge(mergeByDivide0(lists, left, mid), mergeByDivide0(lists, mid + 1, right));
     }
 
     private static ListNode merge_02(ListNode[] lists) {
