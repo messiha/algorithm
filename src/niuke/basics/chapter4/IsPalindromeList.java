@@ -34,9 +34,9 @@ public class IsPalindromeList {
 
 
         head.next = new ListNode(2);
-        head.next.next = new ListNode(2);
-        head.next.next.next = new ListNode(1);
-
+        head.next.next = new ListNode(3);
+//      head.next.next.next = new ListNode(1);
+        ListNode node = reverse_0(head);
         System.out.println(IsPalindrome2(head));
 
     }
@@ -108,4 +108,48 @@ public class IsPalindromeList {
         head.next = null;
         return newHead;
     }
+
+
+    //力扣
+    public boolean solution(ListNode head) {
+        if (null == head || head.next == null) {
+            return true;
+        }
+        ListNode fast = head, slow = head;
+
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        //翻转
+        ListNode start = reverse_0(slow.next);
+
+        //判断
+        while (start != null) {
+            if (start.val != head.val) {
+                return false;
+            }
+            start = start.next;
+            head = head.next;
+        }
+        return true;
+    }
+
+    public static ListNode reverse_0(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode p1 = head, p2 = head.next;
+        while (p2 != null) {
+            ListNode tmp = p2.next;
+            p2.next = p1;
+            p1 = p2;
+            p2 = tmp;
+        }
+        head.next = null;
+        return p1;
+    }
+
 }
