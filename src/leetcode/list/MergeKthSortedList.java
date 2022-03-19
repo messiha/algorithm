@@ -32,8 +32,8 @@ public class MergeKthSortedList {
         lists[2] = l3;
 
 //        mergeByPriorityQueue(lists);
-//        merge_02(lists);
-        mergeByDivide(lists, 0, lists.length - 1);
+        mergeByDivideNotRecur(lists);
+//        solution(lists, 0, lists.length - 1);
     }
 
     /**
@@ -79,7 +79,7 @@ public class MergeKthSortedList {
      * @param right
      * @return 返回left，right合并后的头结点
      */
-    private static ListNode mergeByDivide(ListNode[] lists, int left, int right) {
+    private static ListNode solution(ListNode[] lists, int left, int right) {
         if (null == lists || lists.length == 0) {
             return null;
         }
@@ -94,7 +94,14 @@ public class MergeKthSortedList {
         return merge(mergeByDivide0(lists, left, mid), mergeByDivide0(lists, mid + 1, right));
     }
 
-    private static ListNode merge_02(ListNode[] lists) {
+
+    /**
+     * 分治思路另一种实现方式(非递归版本)
+     *
+     * @param lists
+     * @return
+     */
+    private static ListNode mergeByDivideNotRecur(ListNode[] lists) {
         if (null == lists || lists.length == 0) {
             return null;
         }
@@ -102,6 +109,8 @@ public class MergeKthSortedList {
         for (int step = 1; step < len; step <<= 1) {
             for (int i = 0; i + step <= len - 1; i += step * 2) {
                 ListNode first = lists[i], second = lists[i + step];
+                //[n1,n2,n3,n4]
+                //第一次step = 1 n1和n2merge,合并后list[0]指向合并结果,同理n3和n4merge,合并后list[2]指向合并结果
                 lists[i] = merge(first, second);
             }
         }

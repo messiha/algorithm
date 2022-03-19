@@ -1,4 +1,4 @@
-package src.leetcode;
+package src.leetcode.array;
 
 /**
  * @Author yan.zhang

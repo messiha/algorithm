@@ -1,5 +1,5 @@
 
-package src.leetcode;
+package src.leetcode.list;
 
 /**
  * @author yan.zhang
