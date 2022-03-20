@@ -1,4 +1,4 @@
-package src.xmly;
+package src.leetcode.dp;
 
 /**
  * @Author yan.zhang
