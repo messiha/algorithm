@@ -12,8 +12,8 @@ public class GenerateParenthesis {
      * 括号生成
      */
     public static void main(String[] args) {
-//        solution(3);
-        dp(3);
+//      solution(3);
+        dp_1(3);
     }
 
     private static List<String> solution(int n) {
@@ -95,17 +95,27 @@ public class GenerateParenthesis {
 
     /**
      * dp思路不去重版本
-     *
+     * 递推公式：
+     * "(" + 【i=p时所有括号的排列组合】 + ")" + 【i=q时所有括号的排列组合】
+     * 其中 p + q = n-1，且 p q 均为非负整数。
+     * 事实上，当上述 p 从 0 取到 n-1，q 从 n-1 取到 0 后，所有情况就遍历完了。
+     * 因为 p + q = n-1 ,所以对于n=3，存在三种情况
+     * p=0,q=2 | p=1,q=1 | p=2,q=0
+     * n = 0 [""]
+     * n = 1 [()]
+     * n = 2 [()(),(())]
+     * 分别画图 p=0,q=2 | p=1,q=1 | p=2,q=0
      * @param n
      * @return
      */
     private static List<String> dp_1(int n) {
         LinkedList<LinkedList<String>> result = new LinkedList<>();
-        if (n == 0)
-            return result.get(0);
         LinkedList<String> list0 = new LinkedList<>();
         list0.add("");
         result.add(list0);
+        if (n == 0) {
+            return result.get(0);
+        }
         LinkedList<String> list1 = new LinkedList<>();
         list1.add("()");
         result.add(list1);
