@@ -13,8 +13,10 @@ public class RemoveLinkedListElement {
      * 移除链表元素
      */
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
+        ListNode head = new ListNode(7);
         head.next = new ListNode(7);
+        head.next.next = new ListNode(7);
+        head.next.next.next = new ListNode(7);
         solution(head, 7);
     }
 
@@ -30,13 +32,10 @@ public class RemoveLinkedListElement {
         while (cur != null) {
             if (cur.next != null && cur.next.val == val) {
                 cur.next = cur.next.next;
-            } else if (cur.val == val) {
-                dummy.next = cur.next;
             } else {
                 cur = cur.next;
             }
         }
-
         return dummy.next;
     }
 }
