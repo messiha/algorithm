@@ -183,14 +183,10 @@ public class SortList {
         return dummy.next;
     }
 
-    //归并
-
-
     //直接换值
     private static void swap(ListNode cur, ListNode next) {
         int tmp = cur.val;
         cur.val = next.val;
         next.val = tmp;
     }
-
 }
