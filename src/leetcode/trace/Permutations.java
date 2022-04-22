@@ -17,7 +17,7 @@ public class Permutations {
      * https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/
      */
     public static void main(String[] args) {
-        int[] ints = {1, 1, 2};
+        int[] ints = {1, 3, 2};
         solution_01(ints);
     }
 
