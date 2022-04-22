@@ -16,7 +16,6 @@ public class AlternatePrintln {
      */
     public static void main(String[] args) {
         new AlternatePrintln().start();
-
     }
     ReentrantLock lock = new ReentrantLock();
     Condition c1 = lock.newCondition();
@@ -68,7 +67,7 @@ public class AlternatePrintln {
             System.out.println(no);
             no = 3;
             c3.signal();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         } finally {
             lock.unlock();
         }
