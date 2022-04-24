@@ -13,6 +13,7 @@ public class Permutations {
     /**
      * https://leetcode-cn.com/problems/permutations/
      * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列。
+     * 排列：无顺序性
      * <p>
      * https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/
      */
