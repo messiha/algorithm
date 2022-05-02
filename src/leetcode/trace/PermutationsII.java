@@ -10,7 +10,7 @@ import java.util.Stack;
  * @Date 2022/2/25 20:08
  * @Version 1.0
  */
-public class permutationsII {
+public class PermutationsII {
     /**
      * https://leetcode-cn.com/problems/permutations-ii/
      * 给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。

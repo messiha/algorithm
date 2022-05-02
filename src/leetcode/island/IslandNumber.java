@@ -1,4 +1,4 @@
-package src.leetcode.trace;
+package src.leetcode.island;
 
 import java.util.LinkedList;
 import java.util.Queue;
