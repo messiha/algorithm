@@ -71,4 +71,26 @@ public class BalanceTree {
     }
 
 
+    //解法2
+    public boolean isBalanced(TreeNode root) {
+        return height(root) >= 0;
+    }
+
+    private int height(TreeNode root) {
+        if (null == root) {
+            return 0;
+        }
+        int left = height(root.left);
+        int right = height(root.right);
+
+        if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
+            return -1;
+        } else {
+            return Math.max(left, right) + 1;
+        }
+
+
+    }
+
+
 }
