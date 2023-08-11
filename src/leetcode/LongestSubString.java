@@ -1,6 +1,8 @@
 package src.leetcode;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 /**
  * @author yan.zhang
@@ -12,8 +14,8 @@ public class LongestSubString {
      * https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
      */
     public static void main(String[] args) {
-        String str = "abccbda";
-        System.out.println(lengthOfLongestSubstring(str));
+        String str = "abba";
+        System.out.println(lengthOfLongestSubstring2(str));
     }
 
     /**
@@ -44,5 +46,21 @@ public class LongestSubString {
             ans = Math.max(ans, r - i + 1);
         }
         return ans;
+    }
+
+    public static int lengthOfLongestSubstring2(String s) {
+        if (s.length() <=1) return s.length();
+        int max = 0;
+        int left = 0;
+        Map<Character, Integer> map = new HashMap();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                //"abba" Math.max()遇到后面重复出现的字符，防止窗口下标被重置
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
+            }
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
+        }
+        return max;
     }
 }
